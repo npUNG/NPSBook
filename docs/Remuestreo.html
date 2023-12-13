@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.283">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Estadistica No Parametrica - 10&nbsp; Métodos de Remuestreo</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./Tcontigencia.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Remuestreo.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Métodos de Remuestreo</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Estadistica No Parametrica</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./signo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Test del Signo</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pareadas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Muestras pareadas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./muestrasind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Muestras independientes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Anova una vía</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./friedman.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diseños en bloques y correlación</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bondad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Pruebas de Bondad de Ajuste</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Tcontigencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tablas de Contingencia</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Remuestreo.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Métodos de Remuestreo</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#bajo-normalidad" id="toc-bajo-normalidad" class="nav-link active" data-scroll-target="#bajo-normalidad"><span class="header-section-number">10.1</span> Bajo Normalidad</a></li>
+  <li><a href="#bootstrap" id="toc-bootstrap" class="nav-link" data-scroll-target="#bootstrap"><span class="header-section-number">10.2</span> Bootstrap</a>
+  <ul class="collapse">
+  <li><a href="#sesgo-y-varianza-bootstrap" id="toc-sesgo-y-varianza-bootstrap" class="nav-link" data-scroll-target="#sesgo-y-varianza-bootstrap"><span class="header-section-number">10.2.1</span> Sesgo y varianza Bootstrap</a></li>
+  <li><a href="#intervalo-de-confianza-bootstrap" id="toc-intervalo-de-confianza-bootstrap" class="nav-link" data-scroll-target="#intervalo-de-confianza-bootstrap"><span class="header-section-number">10.2.2</span> Intervalo de Confianza Bootstrap</a></li>
+  <li><a href="#usando-bootstrap" id="toc-usando-bootstrap" class="nav-link" data-scroll-target="#usando-bootstrap"><span class="header-section-number">10.2.3</span> Usando Bootstrap</a></li>
+  <li><a href="#estimador-jackknife-ejemplo-de-la-varianza" id="toc-estimador-jackknife-ejemplo-de-la-varianza" class="nav-link" data-scroll-target="#estimador-jackknife-ejemplo-de-la-varianza"><span class="header-section-number">10.2.4</span> Estimador Jackknife: Ejemplo de la Varianza</a></li>
+  </ul></li>
+  <li><a href="#sesgo-jackknife" id="toc-sesgo-jackknife" class="nav-link" data-scroll-target="#sesgo-jackknife"><span class="header-section-number">10.3</span> Sesgo Jackknife</a>
+  <ul class="collapse">
+  <li><a href="#estimador-jackknife-a-partir-del-sesgo" id="toc-estimador-jackknife-a-partir-del-sesgo" class="nav-link" data-scroll-target="#estimador-jackknife-a-partir-del-sesgo"><span class="header-section-number">10.3.1</span> Estimador Jackknife a partir del sesgo</a></li>
+  <li><a href="#propiedades-de-la-varianza" id="toc-propiedades-de-la-varianza" class="nav-link" data-scroll-target="#propiedades-de-la-varianza"><span class="header-section-number">10.3.2</span> Propiedades de la varianza</a></li>
+  <li><a href="#ejemplo-de-juguete" id="toc-ejemplo-de-juguete" class="nav-link" data-scroll-target="#ejemplo-de-juguete"><span class="header-section-number">10.3.3</span> Ejemplo de juguete</a></li>
+  <li><a href="#distribución-del-estimador-jackknife" id="toc-distribución-del-estimador-jackknife" class="nav-link" data-scroll-target="#distribución-del-estimador-jackknife"><span class="header-section-number">10.3.4</span> Distribución del estimador Jackknife</a></li>
+  <li><a href="#ic-jackknife" id="toc-ic-jackknife" class="nav-link" data-scroll-target="#ic-jackknife"><span class="header-section-number">10.3.5</span> IC Jackknife</a></li>
+  <li><a href="#jackknife.-ejemplo-con-cv" id="toc-jackknife.-ejemplo-con-cv" class="nav-link" data-scroll-target="#jackknife.-ejemplo-con-cv"><span class="header-section-number">10.3.6</span> Jackknife. Ejemplo con CV</a></li>
+  <li><a href="#fórmula-alterna-de-la-varianza" id="toc-fórmula-alterna-de-la-varianza" class="nav-link" data-scroll-target="#fórmula-alterna-de-la-varianza"><span class="header-section-number">10.3.7</span> Fórmula alterna de la varianza</a></li>
+  <li><a href="#jackknife" id="toc-jackknife" class="nav-link" data-scroll-target="#jackknife"><span class="header-section-number">10.3.8</span> Jackknife</a></li>
+  <li><a href="#usando-jackknife" id="toc-usando-jackknife" class="nav-link" data-scroll-target="#usando-jackknife"><span class="header-section-number">10.3.9</span> Usando Jackknife</a></li>
+  <li><a href="#permutaciones" id="toc-permutaciones" class="nav-link" data-scroll-target="#permutaciones"><span class="header-section-number">10.3.10</span> Permutaciones</a></li>
+  </ul></li>
+  <li><a href="#método-para-generar-muestras-aleatorias" id="toc-método-para-generar-muestras-aleatorias" class="nav-link" data-scroll-target="#método-para-generar-muestras-aleatorias"><span class="header-section-number">10.4</span> Método para generar muestras aleatorias</a></li>
+  <li><a href="#simulaciones-de-monte-carlo" id="toc-simulaciones-de-monte-carlo" class="nav-link" data-scroll-target="#simulaciones-de-monte-carlo"><span class="header-section-number">10.5</span> Simulaciones de Monte Carlo</a>
+  <ul class="collapse">
+  <li><a href="#monte-carlo" id="toc-monte-carlo" class="nav-link" data-scroll-target="#monte-carlo"><span class="header-section-number">10.5.1</span> Monte Carlo</a></li>
+  </ul></li>
+  <li><a href="#validación-cruzada" id="toc-validación-cruzada" class="nav-link" data-scroll-target="#validación-cruzada"><span class="header-section-number">10.6</span> Validación Cruzada</a></li>
+  <li><a href="#regresión-lineal-y-redes-neuronales" id="toc-regresión-lineal-y-redes-neuronales" class="nav-link" data-scroll-target="#regresión-lineal-y-redes-neuronales"><span class="header-section-number">10.7</span> Regresión Lineal y Redes Neuronales</a>
+  <ul class="collapse">
+  <li><a href="#gráfico-red-neuronal-datos-cereales" id="toc-gráfico-red-neuronal-datos-cereales" class="nav-link" data-scroll-target="#gráfico-red-neuronal-datos-cereales"><span class="header-section-number">10.7.1</span> Gráfico Red Neuronal Datos Cereales</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Métodos de Remuestreo</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="bajo-normalidad" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="bajo-normalidad"><span class="header-section-number">10.1</span> Bajo Normalidad</h2>
+<ul>
+<li><p><span class="math inline">\(Y_{1}, \ldots, Y_{n}\)</span> muestra aleatoria de <span class="math inline">\(Y \sim N\left(\theta, \sigma^{2}\right)\)</span></p></li>
+<li><p><span class="math inline">\(\hat{\theta}=\bar{Y}\)</span> es un estimador de <span class="math inline">\(\theta\)</span></p></li>
+<li><p>Sesgo <span class="math inline">\(\begin{array}{l}\operatorname{Sesgo}(\hat{\theta})=(E(\hat{\theta})-\theta)=(E(\bar{Y})-\theta)=0 \\V(\hat{\theta})=V(\bar{Y})=\frac{\sigma^{2}}{n}\end{array}\)</span></p></li>
+<li><p>Un IC del <span class="math inline">\(100(1-\alpha) \%\)</span> para <span class="math inline">\(\theta\)</span> es</p></li>
+</ul>
+<p><span class="math display">\[\left((\hat{\theta}-\operatorname{Sesgo}(\hat{\theta})) \pm Z_{1-\frac{\alpha}{2}} \sqrt{V(\hat{\theta})}\right)\]</span></p>
+</section>
+<section id="bootstrap" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="bootstrap"><span class="header-section-number">10.2</span> Bootstrap</h2>
+<ul>
+<li><p><span class="math inline">\(Y_{1}, \ldots, Y_{n}\)</span> muestra aleatoria de <span class="math inline">\(f(y ; \theta)\)</span></p></li>
+<li><p><span class="math inline">\(\hat{\theta}\)</span> es un estimador de <span class="math inline">\(\theta\)</span></p></li>
+<li><p>Distribución de <span class="math inline">\(\hat{\theta}\)</span> desconocida</p></li>
+<li><p>Sesgo <span class="math inline">\(\operatorname{Sesgo}(\hat{\theta})=(E(\hat{\theta})-\theta)\)</span> desconocido</p></li>
+<li><p><span class="math inline">\(V(\hat{\theta})\)</span> desconocida</p></li>
+</ul>
+<p>Table: Muestras Bootstrap (con reemplazo): Sea <span class="math inline">\(j = 1;... ; n\)</span> el tamaño de la muestra bootstrap y <span class="math inline">\(b = 1; :: : ; B\)</span> el número de muestras bootstrap, <span class="math inline">\(\hat{\theta}\)</span> es el estimador de <span class="math inline">\(\theta\)</span>.</p>
+<p>PEGAR TABLA DIAPO 5</p>
+<section id="sesgo-y-varianza-bootstrap" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="sesgo-y-varianza-bootstrap"><span class="header-section-number">10.2.1</span> Sesgo y varianza Bootstrap</h3>
+<ul>
+<li>Sesgo: Diferencia entrela media de las estimaciones del parámetro con muestras bootstrap y la estimación del parámetro con la muestra.</li>
+</ul>
+<p><span class="math display">\[\begin{aligned}
+\widehat{\operatorname{Sesgo}}(\hat{\theta}) &amp; =\hat{E}(\hat{\theta})-\hat{\theta} \\
+&amp; =\frac{1}{B} \sum_{b=1}^{B} \hat{\theta}_{b}^{*}-\hat{\theta}
+\end{aligned}\]</span></p>
+<p>Varianza: varianza de las muestras bootstrap</p>
+<p><span class="math display">\[\hat{V}(\hat{\theta})=\frac{1}{B} \sum_{b=1}^{B}\left(\hat{\theta}_{b}^{*}-\frac{1}{B} \sum_{b=1}^{B} \hat{\theta}_{b}^{*}\right)^{2}\]</span></p>
+</section>
+<section id="intervalo-de-confianza-bootstrap" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="intervalo-de-confianza-bootstrap"><span class="header-section-number">10.2.2</span> Intervalo de Confianza Bootstrap</h3>
+<ul>
+<li><p>Se construye a partir de las estimaciones Bootstrap del sesgo y la varianza.</p></li>
+<li><p>Si se asume normalidad un IC del <span class="math inline">\(100(1-\alpha) \%\)</span> para <span class="math inline">\(\theta\)</span> es</p></li>
+</ul>
+<p><span class="math display">\[\left((\hat{\theta}-\widehat{\operatorname{Sesgo}}(\hat{\theta})) \pm Z_{1-\frac{\alpha}{2}} \sqrt{\hat{V}(\hat{\theta})}\right)\]</span></p>
+<ul>
+<li>Si no se asume normalidad un IC del <span class="math inline">\(100(1-\alpha) \%\)</span> para <span class="math inline">\(\theta\)</span> es</li>
+</ul>
+<p><span class="math display">\[\left(\hat{\theta}_{\frac{\alpha}{2}}^{*}, \hat{\theta}_{1-\frac{\alpha}{2}}^{*}\right)\]</span></p>
+</section>
+<section id="usando-bootstrap" class="level3" data-number="10.2.3">
+<h3 data-number="10.2.3" class="anchored" data-anchor-id="usando-bootstrap"><span class="header-section-number">10.2.3</span> Usando Bootstrap</h3>
+<ul>
+<li><p>Construir un IC del 95% para lamedianaasumiendo que tiene una muestra de tamaño 100 de una distribución <span class="math inline">\(\Gamma(3,2))\)</span></p></li>
+<li><p>Ver código BootstrapJackniffePermutaciones.R</p></li>
+<li><p>Ejemplo con la mediana usando lapply</p></li>
+</ul>
+<p>https://stats.idre.ucla.edu/r/library/r-library-introduction-tobootstrapping/</p>
+<section id="distribución-poblacional" class="level4" data-number="10.2.3.1">
+<h4 data-number="10.2.3.1" class="anchored" data-anchor-id="distribución-poblacional"><span class="header-section-number">10.2.3.1</span> Distribución poblacional</h4>
+<p>GRÁFICA</p>
+</section>
+<section id="distribución-de-la-mediana" class="level4" data-number="10.2.3.2">
+<h4 data-number="10.2.3.2" class="anchored" data-anchor-id="distribución-de-la-mediana"><span class="header-section-number">10.2.3.2</span> Distribución de la mediana</h4>
+<p>GRÁFICA</p>
+</section>
+<section id="pseudo-valores-de-tukey" class="level4" data-number="10.2.3.3">
+<h4 data-number="10.2.3.3" class="anchored" data-anchor-id="pseudo-valores-de-tukey"><span class="header-section-number">10.2.3.3</span> Pseudo valores de Tukey</h4>
+<p>Suponga que tiene las observaciones x1; x2; x3 y que los pseudo-valores se encuentran a partir dela media.</p>
+<p><span class="math display">\[\begin{aligned}
+\tilde{x}_{1} &amp; =n \bar{x}-(n-1) \bar{x}_{-1} \\
+&amp; =\frac{3\left(x_{1}+x_{2}+x_{3}\right)}{3}-\frac{2\left(x_{2}+x_{3}\right)}{2} \\
+&amp; =\left(x_{1}+x_{2}+x_{3}\right)-\left(x_{2}+x_{3}\right) \\
+&amp; =x_{1} .
+\end{aligned}\]</span></p>
+<p>Para cualquier <span class="math inline">\(i\)</span> se tiene</p>
+<p><span class="math display">\[\tilde{x}_{i}=x_{i}\]</span></p>
+<p>En general cambiando la media por otra estadística, se definen los pseudo valores de Tukey como</p>
+<p><span class="math display">\[\tilde{\theta}_{i}=n \hat{\theta}-(n-1) \hat{\theta}_{-i}\]</span> ## Estimador Jackknife</p>
+<p><span class="math display">\[\begin{aligned}
+\hat{\theta} &amp; =g\left(X_{1}, \ldots, X_{n}\right) \\
+\text { Sesgo }(\hat{\theta}) &amp; =E(\hat{\theta})-\theta \quad \text { Desconocido } \\
+\hat{\theta}_{-i} &amp; =\text { Estadística } \hat{\theta} \text { removiendo } X_{i}, i=1, \ldots, n \\
+\hat{\theta}_{\mathrm{n}} &amp; =\frac{1}{n} \sum_{i=1}^{n} \hat{\theta}_{-i} \\
+\tilde{\theta}_{i} &amp; =n \hat{\theta}-(n-1) \hat{\theta}_{-i} \quad \text { Pseudo valores de Tukey } \\
+\hat{\theta}_{\text {jack }} &amp; =\frac{1}{n} \sum_{i=1}^{n} \tilde{\theta}_{i} \quad \text { Promedio de pseudo valores }
+\end{aligned}\]</span></p>
+</section>
+</section>
+<section id="estimador-jackknife-ejemplo-de-la-varianza" class="level3" data-number="10.2.4">
+<h3 data-number="10.2.4" class="anchored" data-anchor-id="estimador-jackknife-ejemplo-de-la-varianza"><span class="header-section-number">10.2.4</span> Estimador Jackknife: Ejemplo de la Varianza</h3>
+<p><span class="math display">\[\hat{\theta}=S^{2}=\frac{1}{n} \sum_{i=1}^{n}\left(X_{i}-\bar{X}\right)^{2}\]</span></p>
+<p>Sesgo</p>
+<p><span class="math display">\[\begin{aligned}
+\left(S^{2}\right) &amp; =E\left(S^{2}\right)-\sigma^{2}=\left(\frac{n-1}{n} \sigma^{2}\right)-\sigma^{2} \\
+S_{-i}^{2} &amp; =\text { Estadística } S^{2} \text { removiendo } X_{i}, i=1, \ldots, n \\
+S_{n}^{2} &amp; =\frac{1}{n} \sum_{i=1}^{n} S_{-i}^{2} \\
+\tilde{S}_{i}^{2} &amp; =n S^{2}-(n-1) S_{-i}^{2} \quad \text { Pseudo valores de Tukey } \\
+\hat{\theta}_{\text {jack }} &amp; =\frac{1}{n} \sum_{i=1}^{n} \tilde{S}_{i}^{2}
+\end{aligned}\]</span></p>
+</section>
+</section>
+<section id="sesgo-jackknife" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="sesgo-jackknife"><span class="header-section-number">10.3</span> Sesgo Jackknife</h2>
+<p><span class="math display">\[\begin{aligned} \hat{\theta}_{\text {jack }} &amp; =\frac{1}{n} \sum_{i=1}^{n} \tilde{\theta}_{i} \quad \text { Promedio de pseudo valores } \\ &amp; =\frac{1}{n} \sum_{i=1}^{n}\left(n \hat{\theta}-(n-1) \hat{\theta}_{-i}\right) \\ &amp; =\frac{1}{n} \sum_{i=1}^{n} n \hat{\theta}-(n-1) \frac{1}{n} \sum_{i=1}^{n} \hat{\theta}_{-i} \\ &amp; =n \hat{\theta}-(n-1) \hat{\theta}_{n}\end{aligned}\]</span></p>
+<p>En general: Sesgo <span class="math inline">\((\hat{\theta})=(E(\hat{\theta})-\theta)\)</span>. En jackknife para estimar el sesgo se reemplaza <span class="math inline">\(E(\hat{\theta})\)</span> por <span class="math inline">\(\hat{\theta}\)</span> y <span class="math inline">\(\theta\)</span> o por <span class="math inline">\(\hat{\theta}_{\text {jack }}\)</span></p>
+<p>Sesgo jack= <span class="math display">\[\begin{array}{l}
+=\hat{\theta}-\left(n \hat{\theta}-(n-1) \hat{\theta}_{n}\right) \\
+=\hat{\theta}-n \hat{\theta}+(n-1) \hat{\theta}_{n} \\
+=(n-1) \hat{\theta}_{n}-(n-1) \hat{\theta} \\
+=(n-1)\left(\hat{\theta}_{n}-\hat{\theta}\right) \\
+\end{array}\]</span></p>
+<section id="estimador-jackknife-a-partir-del-sesgo" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="estimador-jackknife-a-partir-del-sesgo"><span class="header-section-number">10.3.1</span> Estimador Jackknife a partir del sesgo</h3>
+<p><span class="math display">\[\begin{array}{l}=\hat{\theta}-(n-1)\left(\hat{\theta}_{n}-\hat{\theta}\right) \\ =\hat{\theta}-(n-1) \hat{\theta}_{n}+(n-1) \hat{\theta} \\ =\hat{\theta}-n \hat{\theta}_{n}+\hat{\theta}_{n}+n \hat{\theta}-\hat{\theta} \\ =\hat{\theta}_{n}-n \hat{\theta}_{n}+n \hat{\theta} \\ =n \hat{\theta}-n \hat{\theta}_{n}+\hat{\theta}_{n} \\ =n \hat{\theta}-(n-1) \hat{\theta}_{n} \\\end{array}\]</span></p>
+</section>
+<section id="propiedades-de-la-varianza" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="propiedades-de-la-varianza"><span class="header-section-number">10.3.2</span> Propiedades de la varianza</h3>
+<p>Sea <span class="math inline">\(X_{1}, \ldots, X_{n}\)</span> una muestra aleatoria y <span class="math inline">\(\bar{X}\)</span> la media muestral.</p>
+<p>Entonces</p>
+<p><span class="math display">\[\begin{array}{l}
+V(\bar{X})=\frac{\sigma^{2}}{n} \rightarrow \hat{V}(\bar{X})=\frac{S^{2}}{n} \\
+\hat{V}(\bar{X})=\frac{1}{n(n-1)} \sum_{i=1}^{n}\left(X_{i}-\bar{X}\right)^{2}
+\end{array}\]</span></p>
+<p>Usando los pseudo-valores <span class="math inline">\(\tilde{\theta}_{1}, \ldots, \tilde{\theta}_{n}\)</span></p>
+<p><span class="math display">\[\hat{V}\left(\hat{\theta}_{\text {jack }}\right)=\frac{1}{n(n-1)} \sum_{i=1}^{n}\left(\tilde{\theta}_{i}-\frac{1}{n} \sum_{j=1}^{n} \tilde{\theta}_{j}\right)^{2}\]</span></p>
+<p>Shao, J. and Tu, D. 1985. The Jackknife and Bootstrap. Springer. Páginas 5 y 6.</p>
+</section>
+<section id="ejemplo-de-juguete" class="level3" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="ejemplo-de-juguete"><span class="header-section-number">10.3.3</span> Ejemplo de juguete</h3>
+<p><span class="math display">\[\begin{aligned} \hat{\theta} &amp; =\bar{X} . n=3 . \\ x_{1} &amp; =2, x_{2}=3, x_{3}=4, \bar{x}=3 \\ \hat{\theta} &amp; =3, \\ \hat{\theta}_{-1} &amp; =\frac{1}{2}\left(x_{2}+x_{3}\right)=3.5, \\ \hat{\theta}_{-2} &amp; =\frac{1}{2}\left(x_{1}+x_{3}\right)=3.0, \\ \hat{\theta}_{-3} &amp; =\frac{1}{2}\left(x_{1}+x_{2}\right)=2.5, \\ \hat{\theta}_{n} &amp; =\frac{1}{3} \sum_{i=1}^{3} \theta_{-i}=3 .\end{aligned}\]</span></p>
+<p><span class="math display">\[\begin{aligned} \tilde{\theta}_{1} &amp; =3 \hat{\theta}-2\left(\hat{\theta}_{-1}\right)=9-7=2 \\ \tilde{\theta}_{2} &amp; =3 \hat{\theta}-2\left(\hat{\theta}_{-2}\right)=9-6=3 \\ \tilde{\theta}_{3} &amp; =3 \hat{\theta}-2\left(\hat{\theta}_{-3}\right)=9-5=4 \\ \hat{\theta}_{\text {jack }} &amp; =\frac{1}{3} \sum_{i=1}^{3} \tilde{\theta}_{-i}=\frac{1}{3}(2+3+4)=3 \\ \hat{\theta}_{\text {jack }} &amp; =n(\hat{\theta})-(n-1) \hat{\theta}_{n}=3(3)-2(3)=3 \\ V\left(\hat{\theta}_{\text {jack }}\right) &amp; =\frac{1}{6}\left((2-3)^{2}+(3-3)^{2}+(4-3)^{2}\right) \\ &amp; =\frac{1}{6}\left(1^{2}+1^{2}\right)=\frac{1}{3} \\ \hat{\theta} &amp; =\hat{\theta}_{n}=\hat{\theta}_{\text {jack. }} \text { Por qué? }\end{aligned}\]</span></p>
+</section>
+<section id="distribución-del-estimador-jackknife" class="level3" data-number="10.3.4">
+<h3 data-number="10.3.4" class="anchored" data-anchor-id="distribución-del-estimador-jackknife"><span class="header-section-number">10.3.4</span> Distribución del estimador Jackknife</h3>
+<p><span class="math display">\[T=\frac{\hat{\theta}_{\text {jack }}-\theta}{\sqrt{\hat{V}\left(\hat{\theta}_{\text {jack }}\right)}} \sim \text { T-student }_{n-1}\]</span></p>
+<p>Miller, R. 1974. The Jackknife-A Review. Biometrika, 61 (1), 1-15</p>
+</section>
+<section id="ic-jackknife" class="level3" data-number="10.3.5">
+<h3 data-number="10.3.5" class="anchored" data-anchor-id="ic-jackknife"><span class="header-section-number">10.3.5</span> IC Jackknife</h3>
+<p>Un IC de confianza del <span class="math inline">\(100(1-\alpha)\)</span> para <span class="math inline">\(\theta\)</span> es</p>
+<p><span class="math display">\[\begin{array}{l}
+\left(\hat{\theta}_{\text {jack }} \pm t_{n-1,1-\frac{\alpha}{2}} \sqrt{\hat{V}\left(\hat{\theta}_{\text {jack }}\right)}\right) \\
+\left(\left(\hat{\theta}-\text { Sesgo }_{\text {jack }}\right) \pm t_{n-1,1-\frac{\alpha}{2}} \sqrt{\hat{V}\left(\hat{\theta}_{\text {jack }}\right)}\right)
+\end{array}\]</span></p>
+<p>Estimating Uncertainty in Population Growth Rates: Jackknife vs.&nbsp;Bootstrap Techniques. Meyer, J., Ingersoll, C., McDonald, L and Boyce, M. 1986. Ecology, 67 (5), 1156-1166</p>
+</section>
+<section id="jackknife.-ejemplo-con-cv" class="level3" data-number="10.3.6">
+<h3 data-number="10.3.6" class="anchored" data-anchor-id="jackknife.-ejemplo-con-cv"><span class="header-section-number">10.3.6</span> Jackknife. Ejemplo con CV</h3>
+<p><span class="math display">\[\begin{aligned} \hat{C} &amp; =g\left(X_{1}, \ldots, X_{n}\right): C V \text { de la muestra } \\ \hat{C}_{-i} &amp; =C V \text { de }\left(X_{1}, \ldots, X_{i-1}, X_{i+1}, \ldots, X_{n}\right) \\ \hat{C}_{n} &amp; =\frac{1}{n} \sum_{i=1}^{n} \hat{C}_{-i}: \text { Promedio de } C V \\ \hat{C}_{\text {jack }} &amp; =n \hat{C}-(n-1) \hat{C}_{n} \\ V\left(\hat{C}_{\text {jack }}\right) &amp; =\frac{(n-1)}{n} \sum_{i=1}^{n}\left(\hat{C}_{-i}-\hat{C}_{n}\right)^{2} \text { Fórmula alterna } \\ \text { Sesgo jack } &amp; =(n-1)\left(\hat{C}_{n}-\hat{C}\right) \\ I C &amp; =\left(\left(\hat{C}-\text { Sesgo }_{\text {jack }}\right) \pm t_{n-1,1-\frac{\alpha}{2}} \sqrt{V\left(\hat{C}_{\text {jack }}\right)}\right)\end{aligned}\]</span></p>
+</section>
+<section id="fórmula-alterna-de-la-varianza" class="level3" data-number="10.3.7">
+<h3 data-number="10.3.7" class="anchored" data-anchor-id="fórmula-alterna-de-la-varianza"><span class="header-section-number">10.3.7</span> Fórmula alterna de la varianza</h3>
+<p>Puede demostrarse que</p>
+<p><span class="math display">\[\begin{array}{l}
+V\left(\hat{\theta}_{\text {jack }}\right)=\frac{1}{n(n-1)} \sum_{i=1}^{n}\left(\tilde{\theta}_{i}-\frac{1}{n} \sum_{j=1}^{n} \tilde{\theta}_{j}\right)^{2} \text { es igual a } \\
+V\left(\hat{\theta}_{\text {jack }}\right)=\frac{(n-1)}{n} \sum_{i=1}^{n}\left(\hat{\theta}_{-i}-\hat{\theta}_{n}\right)^{2} \text { ver prueba }
+\end{array}\]</span></p>
+<p>En el caso del coeficiente de variación se tiene</p>
+<p><span class="math display">\[\begin{array}{l}
+V\left(\hat{C}_{\text {jack }}\right)=\frac{1}{n(n-1)} \sum_{i=1}^{n}\left(\tilde{C}_{i}-\frac{1}{n} \sum_{j=1}^{n} \tilde{C}_{j}\right)^{2} \text { es igual a } \\
+V\left(\hat{C}_{\text {jack }}\right)=\frac{(n-1)}{n} \sum_{i=1}^{n}\left(\hat{C}_{-i}-\hat{C}_{n}\right)^{2}
+\end{array}\]</span></p>
+<p><span class="math display">\[\begin{aligned} V\left(\hat{\theta}_{\mathrm{jack}}\right) &amp; =\frac{1}{n(n-1)} \sum_{i=1}^{n}\left(\tilde{\theta}_{i}-\frac{1}{n} \sum_{j=1}^{n} \tilde{\theta}_{j}\right)^{2} \\ &amp; =\frac{1}{n(n-1)} \sum_{i=1}^{n}\left[n \hat{\theta}-(n-1) \hat{\theta}_{-i}-\frac{1}{n} \sum_{j=1}^{n}\left(n \hat{\theta}-(n-1) \hat{\theta}_{-j}\right)\right]^{2} \\ &amp; =\frac{1}{n(n-1)} \sum_{i=1}^{n}\left[n \hat{\theta}-(n-1) \hat{\theta}_{-i}-\frac{n^{2} \hat{\theta}}{n}+\frac{(n-1)}{n} \sum_{j=1}^{n} \hat{\theta}_{-j}\right]^{2} \\ &amp; =\frac{1}{n(n-1)} \sum_{i=1}^{n}\left[n \hat{\theta}-(n-1) \hat{\theta}_{-i}-n \hat{\theta}+(n-1) \hat{\theta}_{n}\right]^{2}\end{aligned}\]</span></p>
+<p><span class="math display">\[\begin{array}{l}=\frac{1}{n(n-1)} \sum_{i=1}^{n}\left[(n-1) \hat{\theta}_{n}-(n-1) \hat{\theta}_{-i}\right]^{2} \\ =\frac{1}{n(n-1)} \sum_{i=1}^{n}\left[(n-1)\left(\hat{\theta}_{n}-\hat{\theta}_{-i}\right)\right]^{2} \\ =\frac{1}{n(n-1)} \sum_{i=1}^{n}\left[(n-1)^{2}\left(\hat{\theta}_{n}-\hat{\theta}_{-i}\right)^{2}\right] \\ =\frac{(n-1)^{2}}{n(n-1)} \sum_{i=1}^{n}\left(\hat{\theta}_{n}-\hat{\theta}_{-i}\right)^{2} \\ =\frac{(n-1)}{n} \sum_{i=1}^{n}\left(\hat{\theta}_{-i}-\hat{\theta}_{n}\right)^{2}\end{array}\]</span></p>
+</section>
+<section id="jackknife" class="level3" data-number="10.3.8">
+<h3 data-number="10.3.8" class="anchored" data-anchor-id="jackknife"><span class="header-section-number">10.3.8</span> Jackknife</h3>
+<p>AGREGAR TABLA DIAPO 26</p>
+</section>
+<section id="usando-jackknife" class="level3" data-number="10.3.9">
+<h3 data-number="10.3.9" class="anchored" data-anchor-id="usando-jackknife"><span class="header-section-number">10.3.9</span> Usando Jackknife</h3>
+<ul>
+<li><p>Construir un IC del 95% para el coeficiente de variaciÓn asumiendo que tiene una muestra de tamaño 100 de una distribución <span class="math inline">\(\Gamma(3,2))\)</span></p></li>
+<li><p>Ver códigoBootstrapJackniffePermutaciones.R</p></li>
+</ul>
+<section id="distribución-del-cv" class="level4" data-number="10.3.9.1">
+<h4 data-number="10.3.9.1" class="anchored" data-anchor-id="distribución-del-cv"><span class="header-section-number">10.3.9.1</span> Distribución del CV</h4>
+<p>GRÁFICA DIAPO 28</p>
+</section>
+</section>
+<section id="permutaciones" class="level3" data-number="10.3.10">
+<h3 data-number="10.3.10" class="anchored" data-anchor-id="permutaciones"><span class="header-section-number">10.3.10</span> Permutaciones</h3>
+<ul>
+<li><p>Se emplea para estudiar de diferencias entre grupos.</p></li>
+<li><p>Se define una estadística de prueba <span class="math inline">\((T)\)</span> y se calcula con la configuración original de datos <span class="math inline">\(T_{c}\)</span>.</p></li>
+<li><p>Se hacen <span class="math inline">\(k\)</span> permutaciones.En cada iteración se calcula <span class="math inline">\(T\)</span>. Con base en <span class="math inline">\(\left(T_{1}, T_{2}, \ldots, T_{k}\right)\)</span> se establece la distribución.</p></li>
+<li><p>Si <span class="math inline">\(T_{c}\)</span> está en los extremos de la distribución se rechaza la hipótesis de igualdad entre los grupos.</p></li>
+<li><p>Ejemplo: Distribución de <span class="math inline">\(\left|\tilde{X}_{1}-\tilde{X}_{2}\right|\)</span></p></li>
+<li><p>Ver código BootstrapJackniffePermutaciones.R</p></li>
+</ul>
+<section id="test-de-permutaciones" class="level4" data-number="10.3.10.1">
+<h4 data-number="10.3.10.1" class="anchored" data-anchor-id="test-de-permutaciones"><span class="header-section-number">10.3.10.1</span> Test de permutaciones</h4>
+<p>GRÁFICA DIAPO 30</p>
+<p>GRÁFICA DIAPO 31</p>
+<p>GRÁFICA DIAPO 32</p>
+<p>GRÁFICA DIAPO 33</p>
+</section>
+</section>
+</section>
+<section id="método-para-generar-muestras-aleatorias" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="método-para-generar-muestras-aleatorias"><span class="header-section-number">10.4</span> Método para generar muestras aleatorias</h2>
+<ul>
+<li><p>Se basa en el uso de valores pseudoaletorios uniformes <span class="math inline">\(u\)</span> (los softwares traen algoritmos para obtenerlos: Middle-square, generadores congruenciales, Mersene-Twister,..)</p></li>
+<li><p>Suponga que <span class="math inline">\(X \sim f(x ; \theta)\)</span></p></li>
+<li><p><span class="math inline">\(F(x ; \theta) \in[0,1]\)</span></p></li>
+<li><p>Se genera un valor aleatorio uniforme <span class="math inline">\(u \in[0,1]\)</span></p></li>
+<li><p>Se iguala la función de distribución al valor uniforme simulado y se despeja <span class="math inline">\(x\)</span></p></li>
+<li><p>Ejercicio: Cómo generar valores aleatorios de una exponencial de parámetro <span class="math inline">\(\theta\)</span></p></li>
+</ul>
+</section>
+<section id="simulaciones-de-monte-carlo" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="simulaciones-de-monte-carlo"><span class="header-section-number">10.5</span> Simulaciones de Monte Carlo</h2>
+<ul>
+<li><p>Suponga que <span class="math inline">\(X \sim f(x ; \theta)\)</span></p></li>
+<li><p>Se define una estadística <span class="math inline">\(T_{n}\)</span></p></li>
+<li><p>La distribución de la estadística se obtiene calculándola en muchas muestras aleatorias de tamaño <span class="math inline">\(N\)</span> de <span class="math inline">\(X \sim f(x ; \theta)\)</span></p></li>
+<li><p>Se pueden encontrar intervalos de confianza y hacer pruebas de hipótesis a partir de las simulaciones.</p></li>
+<li><p>Ejemplo: Distribución de la varianza <span class="math inline">\(S^{2}\)</span> si <span class="math inline">\(X \sim \Gamma(\alpha=3, \beta=2)\)</span></p></li>
+</ul>
+<section id="monte-carlo" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="monte-carlo"><span class="header-section-number">10.5.1</span> Monte Carlo</h3>
+<p>GRÁFICA DIAPO 36</p>
+</section>
+</section>
+<section id="validación-cruzada" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="validación-cruzada"><span class="header-section-number">10.6</span> Validación Cruzada</h2>
+<ul>
+<li><p>Suponga que tiene <span class="math inline">\(y_{1}, \ldots, y_{n}\)</span></p></li>
+<li><p>Quita <span class="math inline">\(y_{i}\)</span>, estima el modelo y obtine <span class="math inline">\(\hat{y}_{i}\)</span> (leave-one-out)</p></li>
+<li><p><span class="math inline">\(S C E=\sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}\)</span>. Sirve para comparar modelos</p></li>
+<li><p>Puede hacerse dividiendo la muestra en dos partes (two-fold). Muestra de entrenamiento y de prueba (training and test)</p></li>
+<li><p>Ejemplo 1: Aplicación en Regresión http://www.sthda.com/english/articles/38-regression-model-validation/157-cross-validation-essentials-in-r/</p></li>
+<li><p>Ejemplo 2. Aplicación en redes Neuronales https://www.analyticsvidhya.com/blog/2017/09/creatingvisualizing-neural-network-in-r/</p></li>
+</ul>
+</section>
+<section id="regresión-lineal-y-redes-neuronales" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="regresión-lineal-y-redes-neuronales"><span class="header-section-number">10.7</span> Regresión Lineal y Redes Neuronales</h2>
+<p>AGREGAR TABLA DIAPO 39</p>
+<section id="gráfico-red-neuronal-datos-cereales" class="level3" data-number="10.7.1">
+<h3 data-number="10.7.1" class="anchored" data-anchor-id="gráfico-red-neuronal-datos-cereales"><span class="header-section-number">10.7.1</span> Gráfico Red Neuronal Datos Cereales</h3>
+<p>GRÁFICO DIAPO 40</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Tcontigencia.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tablas de Contingencia</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
