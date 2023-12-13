@@ -4,12 +4,21 @@ project:
 
 book:
   title: "Estadistica No Parametrica"
-  author: "Ramón Giraldo"
+  author: "Ramón Giraldo Henao"
+  cover-image: Portada.png
   page-navigation: true
   chapters:
     - index.qmd
     - intro.qmd
     - summary.qmd
+    - signo.qmd
+    - pareadas.qmd
+    - muestrasind.qmd
+    - anova.qmd
+    - friedman.qmd
+    - bondad.qmd
+    - Tcontigencia.qmd
+    - Remuestreo.qmd
     - references.qmd
 
 bibliography: references.bib

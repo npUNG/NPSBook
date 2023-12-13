@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estadistica No Parametrica - 2&nbsp; Summary</title>
+<title>Estadistica No Parametrica - 4&nbsp; Muestras pareadas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./signo.html" rel="next">
-<link href="./intro.html" rel="prev">
+<link href="./muestrasind.html" rel="next">
+<link href="./signo.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -97,6 +97,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -109,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./summary.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pareadas.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Muestras pareadas</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -151,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link active">
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
@@ -163,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./pareadas.html" class="sidebar-item-text sidebar-link">
+  <a href="./pareadas.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Muestras pareadas</span></span></a>
   </div>
 </li>
@@ -215,14 +217,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#ejemplo-conteo-de-bacterias-en-muestras-de-leche" id="toc-ejemplo-conteo-de-bacterias-en-muestras-de-leche" class="nav-link active" data-scroll-target="#ejemplo-conteo-de-bacterias-en-muestras-de-leche"><span class="header-section-number">4.1</span> Ejemplo: Conteo de Bacterias en muestras de leche</a></li>
+  <li><a href="#prueba-t-pareada.-hipótesis" id="toc-prueba-t-pareada.-hipótesis" class="nav-link" data-scroll-target="#prueba-t-pareada.-hipótesis"><span class="header-section-number">4.2</span> Prueba T pareada. Hipótesis</a></li>
+  <li><a href="#estadística-de-prueba-y-región-de-rechazo" id="toc-estadística-de-prueba-y-región-de-rechazo" class="nav-link" data-scroll-target="#estadística-de-prueba-y-región-de-rechazo"><span class="header-section-number">4.3</span> Estadística de Prueba y Región de Rechazo</a></li>
+  <li><a href="#test-del-signo.-muestras-pareadas" id="toc-test-del-signo.-muestras-pareadas" class="nav-link" data-scroll-target="#test-del-signo.-muestras-pareadas"><span class="header-section-number">4.4</span> Test del signo. Muestras pareadas</a></li>
+  <li><a href="#test-de-wilcoxon.-muestras-pareadas" id="toc-test-de-wilcoxon.-muestras-pareadas" class="nav-link" data-scroll-target="#test-de-wilcoxon.-muestras-pareadas"><span class="header-section-number">4.5</span> Test de Wilcoxon. Muestras pareadas</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Muestras pareadas</span></h1>
 </div>
 
 
@@ -237,7 +249,134 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>In summary, this book has no content whatsoever.</p>
+<p>Se presentan cuando cada individuo de la muestra es evaluado en dos ocasiones (por ejemplo antes y después de un tratamiento). También conocidas como emparejadas (matched) o repetidas (repeated).</p>
+<p>Las pruebas del Signo y de Wilcoxon para muestras pareadas (Hollander, M. Wolfe, D. and Chichen, E. 2014. Nonparametric Statistical Methods, John Wiley &amp; Sons) son alternativas no paramétricas a la pruebaT-student para muestras pareadas (Hsu, H. and Lachenbruch, P. 2005. Encyclopedia of Biostatistics. Wiley Online Library).</p>
+<section id="ejemplo-conteo-de-bacterias-en-muestras-de-leche" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="ejemplo-conteo-de-bacterias-en-muestras-de-leche"><span class="header-section-number">4.1</span> Ejemplo: Conteo de Bacterias en muestras de leche</h2>
+<p>Diez muestras de leche se dividen en dos porciones. Una porción se envía al laboratorio I y la otra al laboratorio II. Cada laboratorio hace recuentos bacterianos (miles de bacterias por ml). Los datos se muestran en la tabla a continuación. Con base en los datos puede concluirse que hay diferencias entre los laboratorios?. Puede emplearse una prueba t-student para muestras pareadas?.</p>
+<p>Ejemplo: 10 muestras de leche. A cada una se le mide el contenido bacteriano (miles de bacterias por ml) en dos laboratorios. Hay diferencias entre los laboratorios?</p>
+<p>PEGAR TABLA DE DIAPOSITIVA 5</p>
+</section>
+<section id="prueba-t-pareada.-hipótesis" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="prueba-t-pareada.-hipótesis"><span class="header-section-number">4.2</span> Prueba T pareada. Hipótesis</h2>
+<ul>
+<li><p>Muestra aleatoria pareada:</p>
+<p><span class="math inline">\(\left(X_{1_{1}}, X_{2_{1}}\right), \ldots,\left(X_{1_{n}}, X_{2_{n}}\right) . D_{i}=\left(X_{1_{i}}-X_{2_{i}}\right), i=1, \ldots, n.\)</span></p></li>
+<li><p>Muestra aleatoria pareada observada:</p>
+<p><span class="math inline">\(\left(x_{1_{1}}, x_{2_{1}}\right), \ldots,\left(x_{1_{n}}, x_{2_{n}}\right) \cdot d_{i}=\left(x_{1_{i}}-x_{2_{i}}\right), i=1, \ldots, n \text {. }\)</span></p></li>
+<li><p>Muestra aleatoria: <span class="math inline">\(D_1,...D_n\)</span></p></li>
+<li><p>Hipótesis pueden plantearse como:</p>
+<p><span class="math display">\[\begin{array}{l}
+H_{0}: \mu_{D}=0 \\
+H_{a}: \mu_{D} \neq 0 \\
+\mu_{D}&gt;0 \\
+\mu_{D}&lt;0
+\end{array}\]</span></p></li>
+</ul>
+</section>
+<section id="estadística-de-prueba-y-región-de-rechazo" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="estadística-de-prueba-y-región-de-rechazo"><span class="header-section-number">4.3</span> Estadística de Prueba y Región de Rechazo</h2>
+<p><span class="math display">\[\begin{aligned}
+T &amp; =\frac{\bar{D}}{\frac{S_{D}}{\sqrt{n}}} \sim \text { t-student }_{n-1}, \text { con } \\
+\bar{D} &amp; =\frac{\sum_{i=1}^{n} D_{i}}{n} \text { y } S_{D}=\sqrt{\frac{\sum_{i=1}^{n}\left(D_{i}-\bar{D}\right)^{2}}{n-1} .} \\
+\text { Sea } T_{c} &amp; =\frac{\bar{d}}{\frac{s_{d}}{n}} \operatorname{con} \bar{d}=\frac{\sum_{i=1}^{n} d_{i}}{n} \text { y } s_{d}=\sqrt{\frac{\sum_{i=1}^{n}\left(d_{i}-\bar{d}\right)^{2}}{n-1}}
+\end{aligned}\]</span></p>
+<p>Se rechaza la hipótesis nula al nivel <span class="math inline">\(\alpha\)</span> si</p>
+<p><span class="math display">\[\begin{array}{l}
+T_{c}&lt;t_{\frac{\alpha}{2}} \circ T_{c}&gt;t_{1-\frac{\alpha}{2}} \\
+T_{c}&lt;t_{\alpha} \\
+T_{c}&gt;t_{1-\alpha}
+\end{array}\]</span></p>
+</section>
+<section id="test-del-signo.-muestras-pareadas" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="test-del-signo.-muestras-pareadas"><span class="header-section-number">4.4</span> Test del signo. Muestras pareadas</h2>
+<ul>
+<li><p>Población: sea <span class="math inline">\((X_1-X_2)\)</span> una variable aleatoria bivariada y <span class="math inline">\(Y=\left(X_{1}-X_{2}\right)\)</span>. Suponga que <span class="math inline">\(Y\)</span> tiene mediada <span class="math inline">\(\theta, F_{Y}(\theta)=\frac{1}{2}\)</span> (si <span class="math inline">\(Y\)</span> es continua) o <span class="math inline">\(\circ P(Y \leq \theta) \geq \frac{1}{2}\)</span> y <span class="math inline">\(P(Y \geq \theta) \geq \frac{1}{2}\)</span> (si <span class="math inline">\(Y\)</span> es discreta).</p></li>
+<li><p>Muestra: <span class="math inline">\(Y_{1}, Y_{2}, \ldots, Y_{n}\)</span> una muestra aleatoria de <span class="math inline">\(Y\)</span>.</p></li>
+<li><p>Muestra observada <span class="math inline">\(Y_{1}, Y_{2}, \ldots, Y_{n}\)</span> una muestra aleatoria observada de <span class="math inline">\(Y\)</span>.</p></li>
+<li><p>HIpótesis:</p></li>
+</ul>
+<p><span class="math display">\[\begin{aligned}
+H_{0}: \theta &amp; =0 \\
+H_{a}: \theta &amp; \neq 0 \\
+\theta &amp; &gt;0 \\
+\theta &amp; &lt;0
+\end{aligned}\]</span></p>
+<ul>
+<li>Estadística de prueba y región de rechazo. <span class="math inline">\(H_{a}: \theta&gt;0\)</span></li>
+</ul>
+<p><span class="math display">\[S=\sum_{i=1}^{n} \psi_{i}\]</span> con,</p>
+<p><span class="math display">\[\psi_{i}=\left\{\begin{array}{ll}
+1 &amp; \text { if } Y_{i}&gt;0 \\
+0 &amp; \text { if } Y_{i}&lt;0
+\end{array}\right.\]</span></p>
+<p>Bajo <span class="math inline">\(H_{0}, P\left(\psi_{i}=1\right)=P\left(Y_{i}&gt;0\right)=\frac{1}{2}\)</span> <span class="math display">\[\Rightarrow S \sim \operatorname{Bin}\left(n, \frac{1}{2}\right)\]</span> Se rechaza <span class="math inline">\(H_0\)</span> si</p>
+<p><span class="math inline">\(S \geq k\)</span>, donde <span class="math inline">\(k\)</span> es tal que <span class="math inline">\(P(S \geq k)=\alpha\)</span>, con <span class="math inline">\(\alpha\)</span> el nivel de significancia.</p>
+<ul>
+<li>Estadística de prueba y región de rechazo. <span class="math inline">\(H_{a}: \theta&lt;0\)</span></li>
+</ul>
+<p><span class="math display">\[S=\sum_{i=1}^{n} \psi_{i}\]</span> con,</p>
+<p><span class="math display">\[\psi_{i}=\left\{\begin{array}{ll}
+1 &amp; \text { if } Y_{i}&gt;0 \\
+0 &amp; \text { if } Y_{i}&lt;0
+\end{array}\right.\]</span></p>
+<p>Bajo <span class="math inline">\(H_{0}, P\left(Y_{i}=1\right)=P\left(Y_{i}&gt;0\right)=\frac{1}{2}\)</span></p>
+<p><span class="math display">\[\Rightarrow S \sim \operatorname{Bin}\left(n, \frac{1}{2}\right)\]</span> Se rechaza <span class="math inline">\(H_0\)</span> si</p>
+<p><span class="math inline">\(S \leq k\)</span>, donde <span class="math inline">\(k\)</span> es tal que <span class="math inline">\(P(S \leq k)=\alpha\)</span> y <span class="math inline">\(alpha\)</span> es el nivel de significancia.</p>
+<ul>
+<li>Estadística de prueba y región de rechazo. <span class="math inline">\(H_{a}: \theta \neq 0\)</span></li>
+</ul>
+<p><span class="math display">\[S=\sum_{i=1}^{n} \psi_{i}\]</span></p>
+<p>con,</p>
+<p><span class="math display">\[\psi_{i}=\left\{\begin{array}{ll}
+1 &amp; \text { if } Y_{i} \geq 0 \\
+0 &amp; \text { if } Y_{i}&lt;0
+\end{array}\right.\]</span></p>
+<p>Bajo <span class="math inline">\(H_{0}, P\left(Y_{i}=1\right)=P\left(Y_{i}&gt;0\right)=\frac{1}{2}\)</span></p>
+<p><span class="math display">\[\Rightarrow S \sim \operatorname{Bin}\left(n, \frac{1}{2}\right)\]</span></p>
+<p>Se rechaza <span class="math inline">\(H_0\)</span> si</p>
+<p><span class="math inline">\(S \leq k_{1}\)</span>, donde <span class="math inline">\(k_{1}\)</span> es tal que <span class="math inline">\(P\left(S \leq k_{1}\right)=\alpha / 2\)</span>, o si <span class="math inline">\(S \geq k_{2}\)</span>, donde <span class="math inline">\(k_{2}\)</span> es tal que <span class="math inline">\(P\left(S \geq k_{2}\right)=\alpha / 2\)</span>, con <span class="math inline">\(\alpha\)</span> el nivel de significancia.</p>
+</section>
+<section id="test-de-wilcoxon.-muestras-pareadas" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="test-de-wilcoxon.-muestras-pareadas"><span class="header-section-number">4.5</span> Test de Wilcoxon. Muestras pareadas</h2>
+<ul>
+<li><p>Población: <span class="math inline">\(\left(X_{1}, X_{2}\right)\)</span> variable aleatoria bivariada. <span class="math inline">\(Y=\left(X_{1}-X_{2}\right)\)</span>. Suponga que <span class="math inline">\(Y\)</span> tiene distribución continua simétrica con mediana <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p>Muestra <span class="math inline">\(Y_{1}, \ldots, Y_{n}\)</span> una muestra aleatoria de <span class="math inline">\(Y\)</span>.</p></li>
+<li><p>Hipótesis:</p></li>
+</ul>
+<p><span class="math display">\[\begin{aligned}
+H_{0}: \theta &amp; =0 \\
+H_{a}: \theta &amp; \neq 0 \\
+\theta &amp; &gt;0 \\
+\theta &amp; &lt;0
+\end{aligned}\]</span></p>
+<p><span class="math inline">\(Y_{1}, Y_{2}, \ldots, Y_{n}\)</span> una muestra aleatoria de <span class="math inline">\(Y\)</span>.</p>
+<p><span class="math display">\[\psi_{i}=\left\{\begin{array}{ll}
+1 &amp; \text { if } Y_{i} \geq 0 \\
+0 &amp; \text { if } Y_{i}&lt;0
+\end{array}\right.\]</span></p>
+<p><span class="math inline">\(R_{i}^{+}=\)</span> Posición que ocupa <span class="math inline">\(\left|Y_{i}\right|\)</span> en la sucesión ordenada</p>
+<p><span class="math display">\[|Y|_{(1)} \leq|Y|_{(2)} \leq \ldots \leq|Y|_{(n)}\]</span></p>
+<ul>
+<li>Estadística de prueba:</li>
+</ul>
+<p><span class="math display">\[\begin{array}{l}
+T=\sum_{i=1}^{n} R_{i}^{+} \psi_{i} \\
+T_{c}=\sum_{i=1}^{n} R_{i}^{+} \psi_{i}
+\end{array}\]</span></p>
+<p>Se puede demostrar que</p>
+<p><span class="math display">\[\begin{array}{c}
+E(T)=\frac{n(n+1)}{4} \\
+V(T)=\frac{n(n+1)(2 n+1)}{24}
+\end{array}\]</span></p>
+<ul>
+<li>Distribución asintótica: Para <span class="math inline">\(n\)</span> grande.</li>
+</ul>
+<p><span class="math display">\[Z=\frac{T-E(T)}{\sqrt{V(T)}} \sim N(0,1)\]</span> El valor calculado de la estadística de prueba es</p>
+<p><span class="math display">\[Z_{c}=\frac{T_{c}-E(T)}{\sqrt{V(T)}}\]</span></p>
+<p>Región de rechazo. <span class="math inline">\(H_a:\theta&gt;0\)</span> Se rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(Z_{c}&gt;z_{1-\alpha}\)</span>.</p>
+<p>Región de rechazo. <span class="math inline">\(H_a:\theta&lt;0\)</span> Se rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(Z_{c}&lt;z_{\alpha}\)</span></p>
+<p>Región de rechazo. <span class="math inline">\(H_a:\theta \neq 0\)</span> Se rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(Z_{c}&lt;z_{\frac{\alpha}{2}} \circ Z_{c}&gt;z_{1-\frac{\alpha}{2}}\)</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -246,6 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -598,13 +738,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./intro.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      <a href="./signo.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Test del Signo</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./signo.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Test del Signo</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./muestrasind.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Muestras independientes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

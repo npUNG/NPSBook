@@ -1,0 +1,177 @@
+---
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# Pruebas de Bondad de Ajuste
+
+Las pruebas de bondad de ajuste son usadas para establecer si un
+conjunto de datos procede de algún modelo poblacional específico.
+
+-   Gráfico cuantil-cuantil (Q-Q plot).
+-   Shapiro-Wilk: Test de Normalidad.
+-   Kolmogorov-Smirnov (KS): Test para cualquier distribución.
+-   Lilliefors: Modificación de KS para normalidad.
+-   Prueba $\chi^{2}$ : Para cualquier distribución.
+
+## Gráfico Cuantil-Cuantil
+
+Permite observar cuan cerca está la distribución de un conjunto de datos a alguna distribución ideal ó comparar la distribución de dos conjuntos de datos.
+
+-  Se ordena la muestra $x_{1}, \ldots, x_{n}$ 
+-  Función de distribución empírica $\hat{F}\left(x_{i}\right)=\frac{i}{(n+1)}$, con $i$ la posición que ocupa $X_i$ en la muestra ordenada 
+-  Se compara $\hat{F}\left(x_{i}\right)$ con la función de distribución bajo un modelo de referencia $F(x)$ 
+
+
+## Gráficos Cuantil-Cuantil y de Probabilidad
+
+$X_{1}, \ldots, X_{n}$ muestra aleatoria
+$X_{(1)}, \ldots, X_{(n)}$ Estadísticas de orden
+$\mathrm{QQ}$ versus $F^{-1}\left(\frac{i}{n+1}\right)$ 
+Gráfico de Probabilidad. $F\left(X_{(i)}\right)$ versus $\left(\frac{i}{n+1}\right)$  
+
+
+## QQ Plot
+
+PEGAR GRÁFICO DIAPOSITIVA 6
+
+
+## Prueba de Shapiro-Wilk
+
+-  Hipótesis: $H_0$: Normalidad. $H_1$: No normalidad. Muestra: $X_{1}, \ldots, X_{n}$ 
+
+-  $a_i$ Coeficientes tabla de Shapiro-Wilk (ver enlace). Valores críticos de W (ver enlace).
+
+-  Numerador y denominador son proporcionales a estimadores
+consistentes de $\sigma^{2}$ bajo normalidad (Bagdonavicius, V., Kruopis, J. and Nikulin, M. 2011. Non-parametric tests for complete data. 2011. Wiley. (páginas 250-253))
+
+$$W=\frac{\left(\sum_{j=1}^{k} a_{j}\left(X_{n-j+1}-X_{j}\right)\right)^{2}}{\sum_{i=1}^{n}\left(X_{i}-\bar{X}\right)^{2}}, k=\left\{\begin{array}{ll}
+\frac{n}{2} & \text { n par } \\
+\frac{n-1}{2} & \text { n impar }
+\end{array}\right.$$
+
+Se rechaza $H_0$ si $W_c$ es pequeño, es decir $P\left(W<W_{c}\right)<\alpha$ 
+
+http://www.real-statistics.com/statistics-tables/shapiro-wilk-table/
+
+
+## Ejemplo Shapiro-Wilk
+
+PEGAR TABLA DIAPOSITIVA 8
+
+https://www.real-statistics.com/tests-normality-and-symmetry/statistical-tests-normality-symmetry/shapiro-wilk-test/
+
+PEGAR TABLA DIAPOSITIVA 9
+
+https://www.real-statistics.com/tests-normality-and-symmetry/statistical-tests-normality-symmetry/shapiro-wilk-test/
+
+
+## Prueba de Kolmogorov-Smirnov Distribución Especificada
+
+-  Hipótesis: $H_{0}: F(x)=F_{0}(x) . H_{1}: F(x) \neq F_{0}(x)$ 
+-  Muestra: $X_{1}, \ldots, X_{n}$
+-  Función de distribución empírica: $X_{1}, \ldots, X_{n}$ m.a $X_{(1)}, \ldots, X_{(n)}$ estadísticas de orden. 
+
+$$S_{n}(x)=\left\{\begin{array}{ll}
+0 & x<X_{(1)} \\
+\frac{k}{n} & X_{(k)} \leq x<X_{(k+1)} \\
+1 & x \geq X_{(n)}
+\end{array}\right.$$
+
+
+Estadística:
+
+$D=\operatorname{máx}_{i=1, \ldots, n}\left|S_{n}(x)-F_{0}(x)\right|=\text { máx }_{i=1, \ldots, n}\left|\frac{i}{n}-F_{0}\left(x_{(i)}\right)\right|$
+
+Decisión: Se rechaza $D \geq d_{\alpha}$ 
+
+-  Valores críticos: Ver tabla A.38 de Hollander y Wolfe
+-  Ver también: http://www.real-statistics.com/statistics-tables/kolmogorov-smirnov-table/
+-  Para n grande D sigue una distribución Kolmogorov
+http://www.real-statistics.com/tests-normality-and-symmetry/
+statistical-tests-normality-symmetry/kolmogorov-smirnov-test/kolmogorov-distribution/
+
+
+### Ejemplo
+
+PEGAR TABLA DIAPOSITIVA 12
+
+Probar que $Z \sim N(14,2)$ 
+
+
+### Tabla de datos. Distribución Especificada
+
+PEGAR TABLA DIAPOSITIVA 13
+
+Valor crítico: http://www.real-statistics.com/statistics-tables/kolmogorov-smirnov-table/
+
+
+-  Se usan las estimaciones de los parámetros de la distribución de referencia. Para el ejemplo deben estimarse $\mu$ y $\sigma$
+
+$$D=\text { máx }_{i=1, \ldots, n}\left|S_{n}(x)-\hat{F}_{0}(x)\right|=\left|\frac{i}{n}-\hat{F}_{0}\left(x_{i}\right)\right|$$
+
+-  Decisión: Se rechaza $H_0$ si $D \geq d_{\alpha}$
+-  Valores críticos: Ver tabla A.38 de Hollander y Wolfe. 
+-  Ver también: http://www.real-statistics.com/statistics-tables/kolmogorov-smirnov-table/
+
+
+### Tabla de datos. Distribución No Especificada
+
+PEGAR TABLA DIAPOSITIVA 15
+
+Valor crítico: http://www.real-statistics.com/statistics-tables/kolmogorov-smirnov-table/
+
+
+## Prueba de Normalidad de Lilliefors
+
+-  Se basa en una modificación de la estadística de Kolmogorov-Smirnov arriba descrita
+
+$$\begin{aligned} D & =\operatorname{máx}\left(D^{+}, D^{-}\right) \\ D^{+} & =\operatorname{máx}\left|\left(\frac{i}{n}-F_{0}\left(X_{(i)}\right)\right)\right| \\ D^{-} & =\operatorname{máx}\left|\left(\frac{i-1}{n}-F_{0}\left(X_{(i)}\right)\right)\right|\end{aligned}$$
+
+Si los parámetros son estimados 
+
+$$\begin{aligned}
+D & =\operatorname{máx}\left(D^{+}, D^{-}\right) \\
+D^{+} & =\operatorname{máx}\left|\left(\frac{i}{n}-\hat{F}_{0}\left(X_{(i)}\right)\right)\right| \\
+D^{-} & =\operatorname{máx}\left|\left(\frac{i-1}{n}-\hat{F}_{0}\left(X_{(i)}\right)\right)\right|
+\end{aligned}$$
+
+Tarea: Realizar el test de Lilliefors con los datos del ejemplo
+Valor crítico: http://WWW.real-statistics.com/statistics-tables/illiefors-test-table/
+
+
+## Prueba de Bondad de Ajuste $\chi^{2}$
+
+-  Compara frecuencias observadas con esperadas bajo un modelo. Se usa en bondad de ajuste y en tablas de contingencia. En esta sección se muestra como emplearla en Bondad de Ajuste.
+
+-  Hipótesis: $H_{0}: F(x)=F_{0}(x) . H_{1}: F(x) \neq F_{0}(x)$
+
+Estadística
+
+$$X^{2}=\sum_{i=1}^{k}\left(\frac{O_{i}-E_{i}}{\sqrt{E_{i}}}\right)^{2} \sim \chi_{(k-p-1)}^{2}$$
+
+-  Se rechaza la hipótesis nula si $X_{c}^{2}>\chi_{(k-p-1),(1-\alpha)}^{2}, \mathrm{p}$ Número de parámetros estimados.
+
+### Ejemplo. Variable Poisson
+
+Se quiere probar que $X \sim \operatorname{Poisson}(\hat{\lambda}), \hat{\lambda}=\bar{x}=2.428$ $E=N \times P_{j}$ O: Frecuencia Observada. E: Frecuencia Esperada. $X_{c}^{2}=6.087>\chi_{0.95,5}^{2}=11.07$, valor $-\mathrm{p}=0.2978$
+
+PEGAR TABLA DIAPOSITIVA 19
+
+
+#### Datos de una Poisson
+
+GRÁFICA DIAPOSITIVA 20
+
+
+
+
+
+
+
+
+
+```{r}
+1 + 1
+```

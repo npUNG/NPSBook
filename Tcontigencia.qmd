@@ -1,0 +1,322 @@
+# Tablas de Contingencia
+
+
+- A partir de las tablas de contingencia (tablas de conteos de frecuencias) se definen estadísticas para probar si hay relación entre dos o más variable cualitativas.
+- Hipótesis nula: No hay asociación entre las variables.
+- Hipótesis alterna: Hay asociación entre las variables.
+- Hay test apropiados para tablas 2 X 2 (Fisher, McNemar) y otros para tablas $r$ X $c$ (independencia)
+- Puede ser fijo el total de individuos $(N)$, el número de individuos por filas o columnas (marginales de filas o columnas) o el número de individuos de las filas y de las columnas (marginales de filas y columnas). 
+
+Table: Tabla $r$ X $c$ con total N fijo. 1500 pacientes de un hospital se clasifican de acuerdo a su tipo de sangre y a la severidad de una enfermedad.
+
+PEGAR TABLA DIAPOSITIVA 4
+
+La hipótesis de interés es que la severidad en la enfermedad de los pacientes es independiente de su tipo de sangre.
+
+Table: Tabla 2 X 2con total N fijo. Se estudia la relación entre hepatitis infecciosa de la madre durante el embarazo y la presencia de tricotomía 21 en los recién nacidos. 
+
+PEGAR TABLA DIAPOSITIVA 5
+
+La hipótesis de interés es que la tricotomía 21 (relacionado al síndrome de Down) no depende de que la madre tenga o no hepatitis.
+
+https://prezi.com/ajub6dkepjx-/sindrome-de-down/
+
+
+Table: Tabla $r$ X $c$ Marginal de fila o columna fijo. Se estudia la relación entre color de los ojos y el desprendimiento de retina. Se toman 100 pacientes con desprendimiento y 100 sin desprendimiento de retina y se observa el color de los ojos.
+
+PEGAR TABLA DIAPOSITIVA 6
+
+La hipótesis de interés es que el desprendimiento de retina no está asociado al color de los ojos.
+
+Table: Tabla 2 X 2con los 2 marginales fijos. Se estudia la habilidad de 2 especies de caracol para tolerar la corriente del río y adherirse al sustrato. 30 caracoles marcados se ponen en el sustrato. 19 de la sp1 y 11 de la sp2. El experimento termina cuando 16 son arrastrados.
+
+PEGAR TABLA DIAPOSITIVA 7
+
+La hipótesis de interés es que ambas especies resisten de manera similar a la corriente.
+
+
+Table: Tabla 2 X 2 Muestras pareadas. En ensayos de aptitud de química clínica los laboratorios reportan valores que son clasificados como satisfactorios o insatisfactorios por dos métodos (consenso y valor de referencia).
+
+PEGAR TABLA DIAPO 8
+
+Ejemplo:Ácido Úrico.
+
+https://link.springer.com/content/pdf/10.1007/s00769-019-01423-6.pdf
+
+
+## Test Exacto de Fisher
+
+-  Exacto: Las probabilidades se calculan encontrando todos los posibles resultados de la estadística de prueba (todas las posibles tablas) y no a partir de un modelo de probabilidad.
+
+-  Asociación entre dos variables categóricas. Generalmente se usa para tablas 2 X 2. Puede ser usada también en tablas 2 X $k$.
+
+-  Se usa cuando los totales de filas y columnas son fijos.
+
+Table: Tabla 2 X 2. Aplica sobre una tabla de contingencia con totales de fillas y columnas fijos.
+
+PEGAR TABLA DIAPO 10
+
+
+### Tablas de Contingencia
+
+Table: Tabla 2 X 2con los 2 marginales fijos. Dados los marginales fijos, cuáles serán los posibles valores de a?
+
+PEGAR TABLA DIAPO 11
+
+Encuentre todos los posible valores de a que permitan completar la tabla. Solución: $a = 3; 4; 5; 6 : :: ; 14$. Hay 12 posibles resultados de $a$.
+
+
+$X$= Número de observaciones en la fila 1 y la columna 1. El valor observado de a es 12. Cuál es la probabilidad de este valor si los marginales son fijos?. Cuál es la probabilidad de un valor mayor a 12?
+
+$$\begin{aligned} P(X=a) & =\frac{\left(\begin{array}{c}a+b \\ a\end{array}\right)\left(\begin{array}{c}c+d \\ c\end{array}\right)}{\left(\begin{array}{c}N \\ a+c\end{array}\right)} \\ P(X=12) & =\frac{\left(\begin{array}{c}19 \\ 12\end{array}\right)\left(\begin{array}{c}11 \\ 2\end{array}\right)}{\left(\begin{array}{c}30 \\ 14\end{array}\right)}=0.019057 \\ P(X \geq 12) & =\sum_{j=0}^{2} \frac{\left(\begin{array}{c}19 \\ 14-j\end{array}\right)\left(\begin{array}{c}11 \\ j\end{array}\right)}{\left(\begin{array}{c}30 \\ 14\end{array}\right)}=0.0211\end{aligned}$$
+-  Se rechaza la hipótesis nula si el valor de a observado es extremo (muy grande o muy pequeño), es decir si 
+
+$P(X \geq a) \leq \alpha$ (hipótesis de una cola superior) o si 
+$P(X \leq a) \leq \alpha$ (hipótesis de una cola inferior).
+
+-  Valor $P$ dos colas. No hay una expresión similar a cuando se usa una distribución continua (por ejemplo la normal). $R$ usa la aproximación.
+
+$$\begin{aligned}
+\text { Valor } P & =\sum_{i} P\left(X=x_{i}\right) \\
+\operatorname{con} P\left(X=x_{i}\right) & \leq P(X=a)
+\end{aligned}$$
+
+### Tablas de Contingencia. Cambiando el orden de las columnas
+
+Table: Tabla 2 X 2con los 2 marginales fijos.Se cambia el orden respecto a la corriente del río.
+
+PEGAR TABLA DIAPO 14
+
+Encuentre todos los posible valores de a que permitan completar la tabla. Solución: $a = 5; 6; 7; 8 : :: ; 16$. Hay 12 posibles resultados de $a$.
+
+
+$X=$ Número de observaciones en la fila 1 y la columna 1. El valor observado de a es 7. Cuál es la probabilidad de este valor si los marginales son fijos?. Cuál es la probabilidad de un valor menor $a$ 7?
+
+$$\begin{array}{l} 
+P(X=a)=\frac{\left(\begin{array}{c}
+a+b \\
+a
+\end{array}\right)\left(\begin{array}{c}
+c+d \\
+c
+\end{array}\right)}{\left(\begin{array}{c}
+N \\
+a+c
+\end{array}\right)} \\
+P(X=7)=\frac{\left(\begin{array}{c}
+19 \\
+7
+\end{array}\right)\left(\begin{array}{c}
+11 \\
+9
+\end{array}\right)}{\left(\begin{array}{c}
+30 \\
+16
+\end{array}\right)}=0.019057 \\
+P(X \leq 7)=\sum_{j=0}^{7} \frac{\left(\begin{array}{c}
+19 \\
+16-j
+\end{array}\right)\left(\begin{array}{c}
+11 \\
+j
+\end{array}\right)}{\left(\begin{array}{c}
+30 \\
+16
+\end{array}\right)}=0.0211
+\end{array}$$
+
+Conclusión: No depende del orden. El mismo resultado se obtiene
+
+
+### Ahora la Especie en las Columnas
+
+Table: Tabla 2 X 2con los 2 marginales fijos. Se pone la especie en columna.
+
+PEGAR TABLA DIAPOSI 16
+
+Encuentre todos los posible valores de a que permitan completar la tabla. Solución: $a = 3; 4; 5; 6 : :: ; 14$. Hay 12 posibles resultados de $a$.
+
+$X=$ Número de observaciones en la fila 1 y la columna 1. El valor observado de a es 12. Cuál es la probabilidad de este valor si los marginales son fijos?. Cuál es la probabilidad de un valor menor $a 12$?
+
+
+$$\begin{aligned} P(X=a) & =\frac{\left(\begin{array}{c}a+b \\ a\end{array}\right)\left(\begin{array}{c}c+d \\ c\end{array}\right)}{\left(\begin{array}{c}N \\ a+c\end{array}\right)} \\ P(X=12) & =\frac{\left(\begin{array}{c}14 \\ 12\end{array}\right)\left(\begin{array}{c}16 \\ 7\end{array}\right)}{\left(\begin{array}{c}30 \\ 19\end{array}\right)}=0.019057 \\ P(X \geq 12) & =\sum_{j=0}^{2} \frac{\left(\begin{array}{c}14 \\ 16-j\end{array}\right)\left(\begin{array}{c}16 \\ j\end{array}\right)}{\left(\begin{array}{c}30 \\ 19\end{array}\right)}=0.0211\end{aligned}$$
+
+Conclusión: Da el mismo resultado independientemente de cuál variable está en la columna y cuál en la fila.
+
+
+### Test Exacto de Fisher. Aproximación Normal
+
+$$Z=\frac{a-\frac{(a+b)(a+c)}{N}}{\sqrt{\frac{(a+b)(a+c)(N-(a+b))(N-(a+c))}{N^{2}(N-1)}}} \sim N(0,1)$$
+
+Se rechaza la hipótesis de independencia en los extremos de la distribución normal.
+
+
+## Test de McNemar
+
+Table: Tabla 2 X 2.Muestras pareadas
+
+PEGAR TABLA DIAPO 19
+
+$$X^{2}=\frac{(b-c)^{2}}{(b+c)} \sim \chi_{1}^{2}$$
+Se rechaza $H_0$ si $X_{c}^{2}>\chi_{1,1-\alpha}^{2}$
+
+
+###  Pruebas Diagnósticas
+
+PEGAR TABLA DIAPO 20
+
+
+## Hipótesis McNemar
+
+-  Hipótesis Nula: Homogeneidad marginal
+-  Hipótesis Alterna: Heterogeneidad marginal
+
+$$\begin{array}{l}
+\mathrm{H}_{0}: \frac{a}{a+c}=\frac{a}{a+b} \\
+\mathrm{H}_{a}: \frac{a}{a+c} \neq \frac{a}{a+b}
+\end{array}$$
+
+
+### Ejemplo Pruebas Diagnósticas
+
+PEGAR TABLA DIAPO 22
+
+
+## Ensayos Clínicos. Sensibilidad, Especificidad y Valores Predictivos
+
+En estudios clínicos:
+
+-  Sensibilidad $(\pi)$: proporción de enfermos correctamente identificados como enfermos $\left(\frac{a}{a+c}\right)$ 
+
+-  Especificidad $(\gamma)$ : proporción de sanos correctamente identificados como sanos $\left(\frac{d}{d+b}\right)$ 
+
+-  VPP $\left(T^{+}\right)$: Proporción de diagnosticados como enfermos que están realmente enfermos $\left(\frac{a}{a+b}\right)$ 
+
+-  VPN $\left(T^{-}\right)$: Proporción de diagnosticados como sanos que están realmente sanos $\left(\frac{d}{c+d}\right)$  
+
+
+### Hipótesis McNemar en Estudios Clínicos
+
+-   Hipótesis Nula: 
+$P$ (Test positivo$\mid$Enfermo) $=P$(Enfermo$\mid$ Test positivo
+Sensibilidad = VPP 
+
+-   Hipótesis alterna: $P$(Test positivo $\mid$Enfermo) $\neq P$(Enfermo$\mid$ Test positivo Sensibilidad $\neq$ VPP.
+
+
+### Ejemplo Ensayo de Aptitud Química Clínica
+
+PEGAR TABLA DIAPO 25
+
+
+## Ensayos de Aptitud. Sensibilidad, Especificidad y Valores Predictivos
+
+-  Sensibilidad: $P$ (Consenso insatisfactorio/VR insatisfactorio) 
+-  Especificidad: $P$ (Consenso satisfactorio/VR satisfactorio) 
+-  VPP: $P$ (VR insatisfactorio/Consenso insatisfactorio) $\left(\frac{a}{a+b}\right)$
+-  VPN: $P$ (VR satisfactorio/Consenso satisfactorio) $\left(\frac{d}{c+d}\right)$
+
+Ejemplo: Ácido Úrico.
+
+https://link.springer.com/content/pdf/10.1007/s00769-019-01423-6.pdf
+
+
+### Hipótesis McNemar en Ensayos de Aptitud
+
+-   Hipótesis Nula:
+$P$ (Consenso InsatisfactoriojVR Insatisfactorio) =
+$P$ (VR InsatisfactoriojConsenso Insatisfactorio)
+Sensibilidad = VPP
+
+-   Hipótesis Alterna:
+$P$ (Consenso Insatisfactorio$\mid$VR Insatisfactorio) $\neq$
+P(VR Insatisfactorio$\mid$Consenso Insatisfactorio)
+Sensibilidad $\neq$ VPP
+
+### Tabla de Contingencia $r$ X $c$
+
+Table: Tabla $r$ X $c$ con total N fijo. 1500 pacientes de un hospital se clasifican de acuerdo a su tipo de sangre y a la severidad de una enfermedad.
+
+PEGAR TABLA DIAPO 28
+
+La hipótesis de interés es que la severidad en la enfermedad de los pacientes es independiente de su tipo de sangre.
+
+Table: Tabla $r$ X $c$ con total N fijo o con Marginales fijos
+
+PEGAR TABLA DIAPO 29
+
+La hipótesis de interés es que las variables A y B son independientes.
+
+
+## Test de Independencia
+
+De teoría de probabilidad se sabe que si dos eventos son independientes su probabilidad conjunta es igual al producto de las probabilidades marginales. Aplicando esto a la tabla anterior se tiene:
+
+$$\begin{aligned} P_{i j} & =P_{i} P_{j}, i=1, \ldots, r ; j=1, \ldots, c . \\ E_{i j} & =N P_{i j} \\ & =N P_{i} P_{j} \\ & =N\left(\frac{R_{i}}{N}\right)\left(\frac{C_{j}}{N}\right) \\ & =\frac{R_{i} C_{j}}{N}\end{aligned}$$
+
+Table: Tabla $r$ X $c$ con total N fijo o con Marginales fijos
+
+PEGAR TABLA DIAPO 31
+
+Tabla con los valores esperados $\left(E_{i j}=\frac{R_{i} C_{j}}{N}\right)$ bajo el supuesto de independencia. 
+
+Se puede comprobar que
+
+$$X^{2}=\sum_{i=1}^{r} \sum_{j=1}^{c} \frac{\left(O_{i j}-E_{i j}\right)^{2}}{E_{i j}} \sim \chi_{(r-1)(c-1)}^{2}$$ 
+
+Luego la hipótesis de independencia se rechaza la nivel $\alpha$ si
+
+$$X_{c}^{2} \geq \chi_{(r-1)(c-1), 1-\alpha}^{2}$$
+
+### Tablas de contingencia
+
+
+Table: Tabla 2 X 2con total N fijo o con Marginales fijos
+
+PEGAR TABLA DIAPOSITIVA 33
+
+La hipótesis de interés es que las variables A y B son independientes.
+
+
+### Test de Independencia y homogeneidad
+
+
+Se puede comprobar que
+
+$$X^{2}=\frac{N\left(O_{11} O_{22}-O_{12} O_{21}\right)^{2}}{R_{1} R_{2} C_{1} C_{2}} \sim \chi_{1}$$
+
+Equivalentemente
+
+
+$$Z=\frac{\sqrt{N}\left(O_{11} O_{22}-O_{12} O_{21}\right)}{\sqrt{R_{1} R_{2} C_{1} C_{2}}} \sim N(0,1)$$
+
+Luego la hipótesis de independencia se rechaza la nivel $\alpha$ si 
+
+$$\begin{array}{l}
+X_{c}^{2} \geq \chi_{1,1-\alpha}^{2} \\
+Z_{c}<Z_{\frac{\alpha}{2}} \circ Z_{c}>Z_{1-\frac{\alpha}{2}}
+\end{array}$$
+
+
+## Corrección de Yates
+
+Si los marginales son fijos
+
+$$X^{2}=\frac{N\left(\left|O_{11} O_{22}-O_{12} O_{21}\right|-\frac{N}{2}\right)^{2}}{R_{1} R_{2} C_{1} C_{2}} \sim \chi_{1}$$ 
+
+Luego la hipótesis de independencia se rechaza la nivel $\alpha$ si
+
+$$X_{c}^{2} \geq \chi_{1,1-\alpha}^{2}$$
+
+
+
+
+
+
+
+
+
+```{r}
+1 + 1
+```
+

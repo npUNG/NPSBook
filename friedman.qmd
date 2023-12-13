@@ -1,0 +1,389 @@
+# Diseños en bloques y correlación
+
+
+## Tipos de Diseños Experimentales
+
+-  Completamente aleatorio: Unidades experimentales homogéneas.
+
+-  Bloques aleatorios: Unidades experimentales heterogéneas.
+
+-  Anidados: Unidades experimentales y muestrales.
+
+-  Medidas repetidas: Varias medidas al mismo individuo (generalmente en el tiempo).
+
+-  Cuadrado Latino: Doble bloqueo.
+
+-  Bloques incompletos. Más tratamientos que unidades experimentales en algunos de los bloques.
+
+-  Parcelas divididas: Es un tipo de diseño en bloques incompletos.
+
+
+### Diseño en Bloques Aleatorios
+
+-   Unidades experimentales heterogéneas.
+
+-   Bloques: Grupo de unidades homogéneas.
+
+-   Diseño en bloques: Se forman grupos de unidades homogéneas y después se hace asignacién aleatoria de tratamiento a las unidades dentro de cada bloque.
+
+-   Modelo: $Y_{i j}=\mu+\beta_{i}+\lambda_{j}+\epsilon_{i j}$ 
+
+-   $i=1, \ldots, n$, bloques, $j=1, \ldots, K$ tratamientos. 
+
+
+#### Ejemplo de Bloques: Consumo de Combustible
+
+Ejemplo: 5 Marcas de vehículos compactos. Y: Millas/Galón. Hay 4 Conductores (bloques). Se quiere probar la hipótesis de igualdad de consumo.
+
+PEGAR TABLA DIAPOSITIVA 5 
+
+
+#### Ejemplo de Bloques: Semillas de Algodón
+
+Ejemplo: 5 Fertilizantes . Y: Rendimiento de semillas de algodón. El terreno se divide en 4 bloques y cada bloque en 5 parcelas. Se fumiga cada parcela con un fertilizante. Se quiere probar la hipótesis de igualdad de fertilizantes. 
+
+PEGAR TABLA DIAPOSITIVA 6
+
+https://alexrojas.netlify.app/post/bloques/
+
+
+#### Ejemplo: Competencia de salto
+
+
+Ejemplo: 4 jueces califican una competencia de salto que incluye 10 competidores. La calificación toma valores entre 1 y 10.
+
+PEGAR TABLA DIAPOSITIVA 7
+
+
+####  Ejemplo: Sabor del Vino
+
+Ejemplo: 7 personas califican el sabor de un vino (1: Muy malo. 11: Muy bueno) a tres horas del día. Los participantes no saben que es el mismo vino. Hay diferencias entre las calificaciones según la hora.
+
+PEGAR TABLA DIAPOSITIVA 8
+
+https:
+//www.cienciadedatos.net/documentos/21_friedman_test
+
+
+## Test de Friedman
+
+-  Un mismo individuo es observado bajo condiciones experimentales distintas.
+
+-  El mismo atleta recibe 4 calificaciones por jueces distintos.
+
+-  Elmismo participante califica el vino a tres horas distintas.
+
+-  Nota: No debe confundirse con diseños de medidas repetidas (tiempo) y anidados (unidades experimentales y unidades muestrales), donde para el mismo individuo hay varias mediciones bajo las mismas condiciones experimentales. 
+
+-  Friedman, M. (1937). The use of ranks to avoid the assumption of normality implicit in the analysis of variance.JASA, 32, 675{701.
+
+-  Generalizael test del Signo de muestras pareadas a más de dos tratamientos.
+
+-  Hay independencia entre individuos, pero no entre tratamientos 
+
+-  $K$ tratamientos, $B$ bloques
+
+-  Hipótesis: $H_0$: Igualdad de medianas. Ha: Diferencia entre al menos un par de medianas.
+
+-  Variable: Ordinal (ver Artículo de Friedman)
+
+
+### Tabla de datos
+
+Table: Arreglo de datos suponiendo que hay una única observación (individuo) por bloque
+
+PEGAR TABLA DIAPOSITIVA 11
+
+### Hipótesis
+
+Table: Arreglo la muestra aleatoria de un diseño experimental con un solo factor de $k$ tratamientos (niveles del factor) y $n$ datos por tratamiento.
+
+PEGAR TABLA DIAPOSITIVA 12
+
+$$\begin{array}{l}H_{0}: \theta_{1}=\theta_{2}=\ldots=\theta_{k} \\ H_{a}: \theta_{i} \neq \theta_{j}\end{array}$$
+
+### Hipótesis y estadística
+
+En términos poblacionales: Suponga que $\theta$ es la mediana total
+
+$$\begin{array}{l}
+H_{0}: Y_{i j}=\theta+\epsilon_{i j}, i=1, \ldots, n ; j=1, \ldots, k \\
+H_{a}: Y_{i j}=\theta+\beta_{i}+\lambda_{j}+\epsilon_{i j},
+\end{array}$$
+
+donde las variables $\epsilon_{i j}$ son una m.a.s. de una distribución continua con mediana 0. Sea $R_{i j}$ denota el rango de $Y_{i j}$ en el $i$-ésimo bloque $Y_{i 1}, \ldots, Y_{i k}$ 
+
+$$\begin{aligned}
+R_{j} & =\sum_{i=1}^{n} R_{i j}, \quad \bar{R}_{j}=\frac{R_{j}}{n} \\
+S & =\frac{12}{n k(k+1)}\left(\sum_{j=1}^{k} R_{j}^{2}\right)-3 n(k+1)
+\end{aligned}$$
+
+
+### Tratamiento de Empates
+
+$$S_{\mathrm{emp}}=\frac{S}{C}, \quad C=1-\frac{\sum_{i=1}^{m}\left(t_{i}^{3}-t_{i}\right)}{n\left(k^{3}-k\right)}$$
+
+-   $t_i$: Número de empates en el $i$-ésimo grupo de empates
+
+-   $m$: Número de grupos con rangos empatados
+
+### Decisión
+
+-   Distribución exacta ver Hollander, Wolfe and Chicken, 2014.
+
+-   Distribución asintótica
+
+$$S \sim \chi_{k-1}^{2}$$
+
+Se rechaza $H_0$ si $S>\chi_{k-1,1-\alpha}^{2}$
+
+-   Empates: Se toma el rango promedio.
+
+
+## Comparación múltiple. Nemenyi
+
+$$\left|\bar{R}_{i}-\bar{R}_{j}\right|>\frac{q_{\infty, k, \alpha}}{\sqrt{2}} \sqrt{\frac{k(k+1)}{6 n}}$$
+-  $q_{\infty, k, \alpha}$ es la cuantila de la distribución del rango estudentizado (ver "PMCMR.pdf")
+
+-  Tabla del rango estudentizado
+http://www.real-statistics.com/statistics-tables/studentized-range-q-table/
+
+
+### Ejemplo: Ejemplo de Jueces
+
+Ejemplo: Rangos de las calificaciones dadas por los jueces
+
+PEGAR TABLA DIAPOSITIVA 17
+
+
+$$\begin{aligned} R_{1} & =25, R_{2}=34.5, R_{3}=14, R_{4}=26.5 \\ S_{C} & =\frac{12\left(25^{2}+34.5^{2}+14^{2}+26.5^{2}\right)}{(10)(4)(5)}-3(10)(5)=12.81 \\ C & =1-\frac{\left(2^{3}-2\right)+\left(2^{3}-2\right)+\left(2^{3}-2\right)}{10\left(4^{3}-4\right)}=0.97 \\ S_{\mathrm{emp}} & =\frac{S}{C}=13.2 \\ \chi_{0.01,3}^{2} & =11.34\end{aligned}$$
+
+
+-  Conclusión: Hay diferencias significativas entre las calificaciones de los jueces
+
+-  Entre cuáles jueces hay diferencias?. Use Nemenyi
+
+
+## Test de Mack-Skillings: Bloques con varias unidades
+
+Table: Arreglo de datos suponiendo que hay $c$ observaciones por bloque
+
+PEGAR TABLA DIAPOSITIVA 19
+
+Mack G. & Skillings J (1980). A Friedman-type rank test for main effects in a two-factor ANOVA. Journal of the American Statistical Association, 75(372), 947-951
+
+
+### Ejemplo: Mack-Skillings
+
+Tratamientos: Laboratorios.Bloques: Muestras de cereal enriquecido con 0, 4 y 8 mg/100gr de Niacina.Respuesta: mg/100gr de Niacina
+
+PEGAR TABLA DIAPOSITIVA 20
+
+### Ejemplo de Mack-Skillings. Tabla Transpuesta
+
+Table: Respuesta: mg/100gr de Niacina. 4 tratamientos (laboratorios), 3 bloques (enriquecimiento de Niacina) y 3 réplicas.
+
+PEGAR TABLA DIAPOSITIVA 21
+
+### Estadística: Mack-Skillings 
+
+IMAGEN DE EJERCICIOS DIAPOSITIVA 22
+
+Usando la ecuación 7.57 se tiene: $k = 4$ tratamientos. $n = 3$
+bloques. $c = 3$ número de réplicas dentro de bloque.
+
+$$\begin{aligned} S_{1} & =17.67, S_{2}=30.05, S_{3}=15.83, S_{4}=14 \\ N & =36 ; c=3 ; k=4, n=3 . \\ M S & =\left(\frac{12}{4(36+3)}\right)\left[(17.67)^{2}+(30.5)^{2}+(15.83)^{2}+(14)^{2}\right] \\ & -3(36+3)=12.93 . \\ \text { ValorP } & =1-\text { pchisq }(12.93,3) . \\ & =0.0047 .\end{aligned}$$
+
+
+## Correlación de Pearson
+
+$$\mathrm{R}_{X Y}=\frac{\operatorname{Cov}(X, Y)}{S_{X} S_{y}}=\frac{\sum_{i=1}^{n}\left(X_{i}-\bar{X}\right)\left(Y_{i}-\bar{Y}\right)}{\sqrt{\sum_{i=1}^{n}\left(X_{i}-\bar{X}\right)} \sqrt{\sum_{i=1}^{n}\left(Y_{i}-\bar{Y}\right)}}$$
+Inferencia
+
+$$\mathrm{T}=\frac{\mathrm{R}_{X Y}-\rho_{X Y n h}}{\sqrt{\frac{1-R_{X Y}^{2}}{n-2}}} \sim \text { t-student }_{n-2}$$
+
+
+### Relación entre $T$ y $R_XY$
+
+PEGAR IMAGEN DIAPOSITIVA 25
+
+
+## Pearson y Spearman
+
+PEGAR IMAGEN DIAPOSITIVA 26
+
+## Correlación de Spearman
+
+-  No requiere normalidad bivariada. Puede usarse con variables discretas
+
+-  Detecta relación monótona (creciente o decreciente)
+
+-  Es resistente a observaciones atípicas porque se define en términos de rangos
+
+PEGAR TABLA DIAPOSITIVA 27
+
+Estadística
+
+$$\mathrm{R}_{S}=\frac{\operatorname{Cov}(\mathrm{R}(X), \mathrm{R}(Y))}{S_{R(X)} S_{R(Y)}}=\frac{\sum_{i=1}^{n}\left(\mathrm{R}\left(X_{i}\right)-\frac{n+1}{2}\right)\left(\mathrm{R}\left(Y_{i}\right)-\frac{n+1}{2}\right)}{\sqrt{\sum_{i=1}^{n}\left(\mathrm{R}\left(X_{i}\right)-\frac{n+1}{2}\right)^{2}} \sqrt{\sum_{i=1}^{n}\left(\mathrm{R}\left(Y_{i}\right)-\frac{n+1}{2}\right)^{2}}}$$
+Nota:
+
+$$\begin{array}{l}
+\bar{R}(X)=\frac{1}{n} \sum_{i=1}^{n} R\left(X_{i}\right)=\frac{1}{n} \sum_{i=1}^{n} i=\frac{n(n+1)}{2 n}=\frac{(n+1)}{2} \\
+\bar{R}(Y)=\frac{1}{n} \sum_{i=1}^{n} R\left(Y_{i}\right)=\frac{1}{n} \sum_{i=1}^{n} i=\frac{n(n+1)}{2 n}=\frac{(n+1)}{2}
+\end{array}$$
+
+La estadística se puede simplificar como (si no hay empates)
+
+$$\mathrm{R}_{S}=1-\frac{6 \sum_{i=1}^{n} D_{i}^{2}}{n^{3}-n}$$
+
+Región de rechazo
+Valores críticos de la tabla de coeficientes de correlación de Spearman (Conover A.10, Hollander A.31 y Zar 13.20)
+
+http://www.real-statistics.com/statistics-tables/spearmans-rho-table/
+
+
+PEGAR TABLA DIAPOSITIVA 30
+
+$$\begin{array}{l}r_{s}=1-\frac{6 \sum_{i=1}^{n} d_{i}^{2}}{5^{3}-5} \\ r_{s}=1-\frac{6 \times 0}{(120)}=1 ; \quad r_{s}=1-\frac{6 \times 40}{(120)}=-1\end{array}$$
+###  Aproximación asintótica
+
+$$\begin{array}{l}
+\mathbb{E}\left(R_{s}\right)=0, \mathbb{V}\left(R_{s}\right)=\frac{1}{(n-1)} \text {. Comprobarlo } \\
+Z=\frac{R_{s}}{\sqrt{\frac{1}{(n-1)}}} \sim N(0,1) \\
+\end{array}$$
+
+Región de rechazo Se rechaza $H_0$ al nivel $\alpha$ si $z_{c}>z_{1-\frac{\alpha}{2}} \circ z_{c}<z_{\frac{\alpha}{2}}$
+
+$$T=\frac{R_{s}}{\sqrt{\frac{1-R_{s}^{2}}{(n-2)}}} \sim T_{n-2}$$
+
+Región de rechazo Se rechaza $H_0$ al nivel $\alpha$ si $t_{c}>t_{1-\frac{\alpha}{2}} \circ t_{s} c<t_{\frac{\alpha}{2}}$
+
+
+### Ejemplo
+
+-   Dos jueces clasifican 8 vinos como peor (1) a mejor (8).
+
+PEGAR TABLA DIAPO 32
+
+-   Existe relación entre lo dicho por los dos jueces?
+
+$$\begin{array}{c}
+r_{s}=1-\frac{6[4+9+1+4+1+1+4]}{8(63)} \\
+r_{s}=1-\frac{144}{504}=0.7143
+\end{array}$$
+
+-   $n=8 \alpha=5 \%$ 
+    Valor critico 0.738. 
+    No hay evidencia para rechazar $H_0$.
+
+### Ejercicio
+
+Se mide $X$: Colágeno (mg/g peso seco) y $Y$ prolina libre (INSERTAR MICRO moles/g peso seco) en 7 pacientes con cirrosis
+
+PEGAR TABLA DIAPOSITIVA 33
+
+-  Hay correlación entre $X$ y $Y$?. Use el coeficiente de Spearman 
+-  Cómo se define $R_s$ cuando hay empates
+
+
+## Correlación de Kendall
+
+Table: Muestra Aleatoria y Muestra Aleatoria Observada Dos variables cuantitativas continuas
+
+PEGAR TABLA DIAPOSITIVA 34
+
+
+### Concordancia y Discordancia
+
+-   $\left(X_{i}, Y_{i}\right)$ Y $\left(X_{j}, Y_{j}\right), i, j=1, \ldots, n, i \neq j$, se llaman concordantes si:
+
+$$\begin{array}{l}
+X_{i}>X_{j} \text { y } Y_{i}>Y_{j} \circ \\
+X_{i}<X_{j} \text { y } Y_{i}<Y_{j}
+\end{array}$$
+
+
+-   $\left(X_{i}, Y_{i}\right)$ Y $\left(X_{j}, Y_{j}\right), i, j=1, \ldots, n, i \neq j$, se llaman discordantes si se dan las siguientes relaciones:
+
+
+$$\begin{array}{l}
+X_{i}>X_{j \text { y }} Y_{i}<Y_{j} \circ \\
+X_{i}<X_{j} \text { y } Y_{i}>Y_{j}
+\end{array}$$
+
+
+### Estadística y Distribución
+
+
+-   Sea $N_c$= Número de parejas concordantes.
+
+-   Sea $N_d$= Número de parejas discordantes.
+
+$\tau=\frac{N_{c}-N_{d}}{N_{c}+N_{d}}=\frac{N_{c}-N_{d}}{n(n-1) / 2} \text {, si no hay empates }$ si no hay empates. 
+
+-   Si no hay tendencia a la concordancia ni a la discordancia $\tau \rightarrow 0$
+
+-   Si hay tendencia a la concordancia $\tau \rightarrow 1$
+
+-   Si hay tendencia a la discordancia $\tau \rightarrow 1$
+
+
+### Kendall. Empates
+
+También llamado coeficiente gamma. Deja solo empates en la respuesta.
+
+-   Sea $N_c$= Número de parejas concordantes.
+
+-   Sea $N_d$= Número de parejas discordantes.
+
+-   Si $\left(Y_{i}=Y_{j}\right)$ y $X_{i} \neq X_{j}$ suma $\frac{1}{2}$ a $N_c$ y $N_d$.
+
+-   Si $\left(X_{i}=X_{j}\right)$ la pareja $(i, j)$ no es tenida en cuenta y el coeficiente se define como
+
+$\tau=\frac{N_{c}-N_{d}}{N_{c}+N_{d}}, \quad \operatorname{con}\left(N_{c}+N_{d}\right) \neq \frac{n(n-1)}{2}$ 
+
+
+### Kendall. Hipótesis
+
+$H_{0}: \tau=0$ Las variables son independientes
+$H_{a}: \tau>0$ Hay correlación positiva
+$\tau<0$ Hay correlación inversa
+$\tau \neq 0$ Hay correlación
+
+-  Valores críticos: Tabla A.11 de Conover
+-  http://www.real-statistics.com/statistics-tables/kendalls-tau-table/
+
+
+### Kendall. Distribución Asintótica
+
+-   La aproximación normal es (Maestría. Comprobarlo)
+
+$$Z=\frac{\tau-E(\tau)}{\frac{\sqrt{2(n+5)}}{3 \sqrt{n(n-1)}}}$$
+
+-   Se rechaza a nivel $\alpha$
+
+$$\left|\tau_{c}\right|>z_{1-\alpha / 2} \times \frac{\sqrt{2(n+5)}}{3 \sqrt{n(n-1)}}$$
+
+### Ejercicio
+
+Se mide $X$: Colágeno (mg/g peso seco) y Y prolina libre (MICRO moles/g peso seco) en 7 pacientes con cirrosis.
+
+AGREGAR TABLA DIAPOSITIVA 40
+
+Hay correlación entre $X$ y $Y$?. Use el coeficiente de Kendall.
+
+
+### Tarea
+
+-   Estudiar, a través de simulación, la potencia de las tres pruebas (Pearson, Spearman, Kendall) bajo normalidad bivariada.
+-   Realizar el mismo ejercicio anterior asumiendo otra distribución conjunta.
+
+
+
+
+
+
+```{r}
+1 + 1
+```
+

@@ -1,0 +1,215 @@
+# Muestras independientes
+
+## Prueba clásica asumiendo normalidad Prueba T de dos muestras independientes
+
+-   Muestra aleatoria $X_{1}, \ldots, X_{n}, Y_{1}, \ldots, Y_{m}$
+
+-   Muestra aleatoria observada $x_{1}, \ldots, x_{n}, y_{1}, \ldots, y_{m}$
+
+-   Hipótesis
+
+$$\begin{aligned}
+H_{0}: \mu_{1} & =\mu_{2} \\
+H_{a}: \mu_{1} & \neq \mu_{2} \\
+\mu_{1} & >\mu_{2} \\
+\mu_{1} & <\mu_{2}
+\end{aligned}$$
+
+### Estadística de prueba y región de rechazo
+
+$$\begin{aligned}
+T & =\frac{(\bar{X}-\bar{Y})}{S_{p} \sqrt{\frac{1}{n}+\frac{1}{m}}} \sim \text { t-student }{ }_{n+m-2}, \text { con } \\
+S_{p} & =\sqrt{\frac{(n-1) S_{x}^{2}+(m-1) S_{y}^{2}}{n+m-2}} . \\
+S_{\text {Sea }} T_{c} & =\frac{(\bar{x}-\bar{y})}{s_{p} \sqrt{\frac{1}{n}+\frac{1}{m}}} \operatorname{con} s_{p}=\sqrt{\frac{(n-1) s_{x}^{2}+(m-1) s_{y}^{2}}{n+m-2}}
+\end{aligned}$$
+
+Se rechaza la hipótesis nula al nivel $\alpha$ si
+
+$$\begin{array}{l}
+T_{c}<t_{\frac{\alpha}{2}} \circ T_{c}>t_{1-\frac{\alpha}{2}} \\
+T_{c}>t_{1-\alpha} \\
+T_{c}<t_{\alpha}
+\end{array}$$
+
+## Pruebas no paramétricas para dos muestras independientes
+
+-   Los datos provienen de distribuciones continuas
+
+-   Se asume independencia (dentro de muestras y entre muestras)
+
+-   Las pruebas de Wilcoxon y de Mann-Whitney para dos muestras son alternativas no paramétricas a la prueba T-student para dos muestras.
+
+## Pruebas de Wilcoxon y de Mann-Whitney
+
+-   Dos versiones del test, descritas comoU de Mann--Whitney y W de Wilcoxon, fueron independientemente desarrolladas por Mann y Whitney (1947) y Wilcoxon (1949).
+
+-   La versión por Wilcoxon (1949) es usualmente llamada test W de Wilcoxon--Mann-Whitney.
+
+-   Aunque se emplean diferentes ecuaciones y diferentes tablas de distribuciones exactas, las dos versiones producen resultados comparables.
+
+### Ejemplo dieta de cabras
+
+-   Tomado de McFarland, T and Yates, J. 2016. Introduction to non parametric statistics for the biological sciences using R. Springer. Una manada de 30 cabras fue dividida en dos grupos. La asignación al grupo 1 o al grupo 2 se basó en una selección aleatoria.
+
+-   Grupo 1: Control. Estas cabras recibieron alimentación regular durante el tratamiento.
+
+-   Grupo 2: Tratamiento. Estas cabras recibieron un suplemento mineral además de la alimentación regular. Respuesta: Un valor (índice) entre 40 y 100 dependiendo de las condiciones de la cabra.
+
+    Ejemplo: 15 cabras asignadas a un grupo control (dieta regular) y uno un grupo de tratamiento (dieta regular con adición de minerales). La respuesta es un índice con valores entre 40 y 100.
+
+    PEGAR TABLA DE DIAPOSITIVA 8
+
+    ## Test de Wilcoxon 
+
+### Supuesto poblacional e hipótesis
+
+-   $X_{1} \ldots, X_{m}$ muestra aleatoria de $X \sim F_{X}(t)$ continua 
+
+-   $Y_{1} \ldots, Y_{n}$ muestra aleatoria de $Y \sim F_{Y}(t)$ continua
+
+-   Independencia entre $X$ y $Y$
+
+-   Hipótesis 
+
+$$\begin{array}{l}
+H_{0}: F_{Y}(t)=F_{X}(t) \text { para todo } t \\
+H_{a}: F_{Y}(t)=F_{X}(t-\Delta) \text { para todo } t \text { y algún } \Delta \neq 0
+\end{array}$$
+
+Gibbons, J and Chakraborti, S. 2003. Nonparametrical Statistical Inference. Marcel Dekker.
+
+
+### Normal
+
+PEGAR FIGURA DIAPOSITIVA 10 
+
+
+### Exponencial y exponencial desplazada
+
+PEGAR FIGURA DIAPOSITIVA 11
+
+### Weibull y Weibull Desplazada
+
+PEGAR FIGURA DIAPOSITIVA 12
+
+∆ en (1) se llama parámetro de desplazo o efecto de tratamiento.
+
+-   Las hipótesis pueden plantearse como
+
+$$\begin{aligned}
+H_{0}: \Delta & =0 \\
+H_{a}: \Delta & \neq 0 \\
+\Delta & >0 \\
+\Delta & <0
+\end{aligned}$$
+
+-   Muestra Combinada: sea $X_{1}, X_{2}, \ldots, X_{m}, X_{m+1}, \ldots, X_{N}$, $N=m+n$ la muestra combinada. $X^{\prime} s$ $X_{m+1}, \ldots, X_{N}$ las observaciones de las $Y^{\prime} s$.
+
+### Estadística de prueba 
+
+-   Se ordena la muestra combinada de $N=m+n$ variables.
+-   Llámese $W=$ suma de los rangos de las $Y^{\prime} s$ en la muestra combinada. Sean $S_{1}, S_{2}, \ldots, S_{n}$. (W puede definirse como la suma de los rangos de las $X^{\prime} s$)
+
+$$\begin{aligned}
+W & =\sum_{i=1}^{n} S_{j} \\
+\mathbb{E}(W) & =\frac{n(N+1)}{2}=\frac{n(m+n+1)}{2} \\
+\mathbb{V}(W) & =\frac{n m(N+1)}{12}=\frac{n m(m+n+1)}{12}
+\end{aligned}$$
+
+
+### Distribución asintótica
+
+$$Z=\frac{W-\mathbb{E}(W)}{\sqrt{\mathbb{V}(W)}} \sim N(0,1)$$
+
+Se rechaza la hipótesis nula $\alpha$ si 
+
+$$\begin{array}{l}
+Z_{c}<z_{\frac{\alpha}{2}} \circ Z_{c}>z_{1-\frac{\alpha}{2}} \\
+Z_{c}>z_{1-\alpha} \\
+Z_{c}<z_{\alpha}
+\end{array}$$
+
+### Distribución exacta
+
+Suponga $m =3$ valores de $X$ y $n = 2$ valores de $Y$. Los
+rangos van entre 1 y 5. Ver Hollander and Wolfe página 108.
+
+PEGAR TABLA DIAPOSITIVA 16
+
+### Empates
+
+-   Caso de distribución exacta: Se da a las observaciones empatadas el promedio de los correspondientes rangos, se calcula W y se usa la misma tabla 
+-   Si se emplea la distribución asintótica cambia la varianza
+
+$$V(W)=\frac{m n(N+1)}{12}-\left(\frac{m n}{12 N(N-1)} \sum_{j=1}^{g}\left(t_{j}-1\right) t_{j}\left(t_{j}+1\right)\right)$$
+
+con $g$ el número de grupos con empates y $t_{j}$ el número de
+observaciones empatadas en el j-ésimo grupo.
+
+
+## Test de Mann-Whitney 
+
+### Hipótesis
+
+Como en el test de Wilcoxon, las hip´otesis pueden plantearse como
+
+$$\begin{aligned} H_{0}: \Delta & =0 \\ H_{a}: \Delta & \neq 0 \\ \Delta & >0 \\ \Delta & <0\end{aligned}$$
+
+### Estadística de prueba 
+
+Sea 
+
+$$\phi(a)=\left\{\begin{array}{ll}
+1 & \text { if } a>0 \\
+0 & \text { if } a<0
+\end{array}\right.$$
+
+La estadística de Mann-Whitney se define como:
+
+$$\begin{aligned}
+U & =\sum_{i=1}^{n} \sum_{j=1}^{m} \phi\left(Y_{i}-X_{j}\right) \\
+& =\#\left(Y_{i}-X_{j}\right)>0
+\end{aligned}$$
+
+Si no hay empates
+
+$$U=W-\frac{n(n+1)}{2}$$
+
+### Distribución asintótica
+
+$$\begin{aligned} U & =W-\frac{n(n+1)}{2} \\ \mathbb{E}(U) & =\mathbb{E}(W)-\frac{n(n+1)}{2} \\ & =\frac{n(N+1)}{2}-\frac{n(n+1)}{2} \\ & =\frac{n(N+1)-n(n+1)}{2} \\ & =\frac{n(N+1-(n+1))}{2} \\ & =\frac{n(n+m+1)-(n+1)}{2} \\ & =\frac{n m}{2}\end{aligned}$$
+
+$$\begin{aligned}
+U & =W-\frac{n(n+1)}{2} \\
+\mathbb{V}(U) & =\mathbb{V}(W)-\mathbb{V}\left(\frac{n(n+1)}{2}\right) \\
+& =\frac{n m(m+n+1)}{12} \\
+Z & =\frac{U-\mathbb{E}(U)}{\sqrt{\mathbb{V}(U)}} \sim N(0,1)
+\end{aligned}$$
+
+
+Se rechaza la hipótesis nula al nivel $\alpha$ si
+
+$$\begin{array}{l}
+Z_{c}<z_{\frac{\alpha}{2}} \circ Z_{c}>z_{1-\frac{\alpha}{2}} \\
+Z_{c}>z_{1-\alpha} \\
+Z_{c}<z_{\alpha}
+\end{array}$$
+
+### Ejemplo R
+
+-   Ver código R: Wilcoxon y Mann-Whitney.R
+
+-   Usar la base de datos Goats.df correspondiente a los datos de
+las cabras arriba descritos.
+
+-   Hacer la prueba T de dos muestras y el test de Wilcoxon (R lo
+llama Wilcoxon pero calcula la estadística de Mann-Whitney).
+
+REVISAR SI EL CÓDIGO R VA EN ESTA PARTE 
+
+FALTAN DIAPOSITIVAS 23-25 CREO QUE SALE DEL CÓDIGO 
+
+
+```{r}
+1 + 1
+```

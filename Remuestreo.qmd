@@ -1,0 +1,325 @@
+# Métodos de Remuestreo
+
+
+## Bajo Normalidad
+
+-  $Y_{1}, \ldots, Y_{n}$ muestra aleatoria de $Y \sim N\left(\theta, \sigma^{2}\right)$ 
+
+-  $\hat{\theta}=\bar{Y}$ es un estimador de $\theta$
+
+-  Sesgo $\begin{array}{l}\operatorname{Sesgo}(\hat{\theta})=(E(\hat{\theta})-\theta)=(E(\bar{Y})-\theta)=0 \\V(\hat{\theta})=V(\bar{Y})=\frac{\sigma^{2}}{n}\end{array}$
+
+-  Un IC del $100(1-\alpha) \%$ para $\theta$ es
+
+$$\left((\hat{\theta}-\operatorname{Sesgo}(\hat{\theta})) \pm Z_{1-\frac{\alpha}{2}} \sqrt{V(\hat{\theta})}\right)$$
+
+
+## Bootstrap
+
+-  $Y_{1}, \ldots, Y_{n}$ muestra aleatoria de $f(y ; \theta)$ 
+
+-  $\hat{\theta}$ es un estimador de $\theta$ 
+
+-  Distribución de $\hat{\theta}$ desconocida  
+
+-  Sesgo $\operatorname{Sesgo}(\hat{\theta})=(E(\hat{\theta})-\theta)$ desconocido 
+
+-  $V(\hat{\theta})$ desconocida
+
+
+Table: Muestras Bootstrap (con reemplazo): Sea $j = 1;... ; n$ el tamaño de la muestra bootstrap y $b = 1; :: : ; B$ el número de muestras bootstrap, $\hat{\theta}$ es el estimador de $\theta$. 
+
+PEGAR TABLA DIAPO 5
+
+
+### Sesgo y varianza Bootstrap
+
+-   Sesgo: Diferencia entrela media de las estimaciones del parámetro con muestras bootstrap y la estimación del parámetro con la muestra. 
+
+$$\begin{aligned}
+\widehat{\operatorname{Sesgo}}(\hat{\theta}) & =\hat{E}(\hat{\theta})-\hat{\theta} \\
+& =\frac{1}{B} \sum_{b=1}^{B} \hat{\theta}_{b}^{*}-\hat{\theta}
+\end{aligned}$$
+
+Varianza: varianza de las muestras bootstrap
+
+$$\hat{V}(\hat{\theta})=\frac{1}{B} \sum_{b=1}^{B}\left(\hat{\theta}_{b}^{*}-\frac{1}{B} \sum_{b=1}^{B} \hat{\theta}_{b}^{*}\right)^{2}$$
+
+
+### Intervalo de Confianza Bootstrap
+
+
+-   Se construye a partir de las estimaciones Bootstrap del sesgo y la varianza.
+
+-   Si se asume normalidad un IC del $100(1-\alpha) \%$ para $\theta$ es
+
+$$\left((\hat{\theta}-\widehat{\operatorname{Sesgo}}(\hat{\theta})) \pm Z_{1-\frac{\alpha}{2}} \sqrt{\hat{V}(\hat{\theta})}\right)$$
+
+-   Si no se asume normalidad un IC del $100(1-\alpha) \%$ para $\theta$ es
+
+$$\left(\hat{\theta}_{\frac{\alpha}{2}}^{*}, \hat{\theta}_{1-\frac{\alpha}{2}}^{*}\right)$$
+
+### Usando Bootstrap
+
+
+-   Construir un IC del 95% para lamedianaasumiendo que tiene una muestra de tamaño 100 de una distribución $\Gamma(3,2))$
+
+-   Ver código BootstrapJackniffePermutaciones.R
+-   Ejemplo con la mediana usando lapply
+
+https://stats.idre.ucla.edu/r/library/r-library-introduction-tobootstrapping/
+
+
+#### Distribución poblacional
+
+GRÁFICA
+
+#### Distribución de la mediana
+
+GRÁFICA 
+
+#### Pseudo valores de Tukey
+
+Suponga que tiene las observaciones x1; x2; x3 y que los
+pseudo-valores se encuentran a partir dela media.
+
+$$\begin{aligned}
+\tilde{x}_{1} & =n \bar{x}-(n-1) \bar{x}_{-1} \\
+& =\frac{3\left(x_{1}+x_{2}+x_{3}\right)}{3}-\frac{2\left(x_{2}+x_{3}\right)}{2} \\
+& =\left(x_{1}+x_{2}+x_{3}\right)-\left(x_{2}+x_{3}\right) \\
+& =x_{1} .
+\end{aligned}$$
+
+
+Para cualquier $i$ se tiene
+
+$$\tilde{x}_{i}=x_{i}$$
+
+En general cambiando la media por otra estadística, se definen los pseudo valores de Tukey como
+
+$$\tilde{\theta}_{i}=n \hat{\theta}-(n-1) \hat{\theta}_{-i}$$
+## Estimador Jackknife
+
+$$\begin{aligned}
+\hat{\theta} & =g\left(X_{1}, \ldots, X_{n}\right) \\
+\text { Sesgo }(\hat{\theta}) & =E(\hat{\theta})-\theta \quad \text { Desconocido } \\
+\hat{\theta}_{-i} & =\text { Estadística } \hat{\theta} \text { removiendo } X_{i}, i=1, \ldots, n \\
+\hat{\theta}_{\mathrm{n}} & =\frac{1}{n} \sum_{i=1}^{n} \hat{\theta}_{-i} \\
+\tilde{\theta}_{i} & =n \hat{\theta}-(n-1) \hat{\theta}_{-i} \quad \text { Pseudo valores de Tukey } \\
+\hat{\theta}_{\text {jack }} & =\frac{1}{n} \sum_{i=1}^{n} \tilde{\theta}_{i} \quad \text { Promedio de pseudo valores }
+\end{aligned}$$
+
+
+### Estimador Jackknife: Ejemplo de la Varianza
+
+
+$$\hat{\theta}=S^{2}=\frac{1}{n} \sum_{i=1}^{n}\left(X_{i}-\bar{X}\right)^{2}$$
+
+Sesgo 
+
+$$\begin{aligned}
+\left(S^{2}\right) & =E\left(S^{2}\right)-\sigma^{2}=\left(\frac{n-1}{n} \sigma^{2}\right)-\sigma^{2} \\
+S_{-i}^{2} & =\text { Estadística } S^{2} \text { removiendo } X_{i}, i=1, \ldots, n \\
+S_{n}^{2} & =\frac{1}{n} \sum_{i=1}^{n} S_{-i}^{2} \\
+\tilde{S}_{i}^{2} & =n S^{2}-(n-1) S_{-i}^{2} \quad \text { Pseudo valores de Tukey } \\
+\hat{\theta}_{\text {jack }} & =\frac{1}{n} \sum_{i=1}^{n} \tilde{S}_{i}^{2}
+\end{aligned}$$
+
+
+## Sesgo Jackknife
+
+$$\begin{aligned} \hat{\theta}_{\text {jack }} & =\frac{1}{n} \sum_{i=1}^{n} \tilde{\theta}_{i} \quad \text { Promedio de pseudo valores } \\ & =\frac{1}{n} \sum_{i=1}^{n}\left(n \hat{\theta}-(n-1) \hat{\theta}_{-i}\right) \\ & =\frac{1}{n} \sum_{i=1}^{n} n \hat{\theta}-(n-1) \frac{1}{n} \sum_{i=1}^{n} \hat{\theta}_{-i} \\ & =n \hat{\theta}-(n-1) \hat{\theta}_{n}\end{aligned}$$
+
+En general: Sesgo $(\hat{\theta})=(E(\hat{\theta})-\theta)$. En jackknife para estimar el sesgo se reemplaza $E(\hat{\theta})$ por $\hat{\theta}$ y $\theta$ o por $\hat{\theta}_{\text {jack }}$
+
+Sesgo jack= $$\begin{array}{l}
+=\hat{\theta}-\left(n \hat{\theta}-(n-1) \hat{\theta}_{n}\right) \\
+=\hat{\theta}-n \hat{\theta}+(n-1) \hat{\theta}_{n} \\
+=(n-1) \hat{\theta}_{n}-(n-1) \hat{\theta} \\
+=(n-1)\left(\hat{\theta}_{n}-\hat{\theta}\right) \\
+\end{array}$$
+
+
+### Estimador Jackknife a partir del sesgo
+
+
+$$\begin{array}{l}=\hat{\theta}-(n-1)\left(\hat{\theta}_{n}-\hat{\theta}\right) \\ =\hat{\theta}-(n-1) \hat{\theta}_{n}+(n-1) \hat{\theta} \\ =\hat{\theta}-n \hat{\theta}_{n}+\hat{\theta}_{n}+n \hat{\theta}-\hat{\theta} \\ =\hat{\theta}_{n}-n \hat{\theta}_{n}+n \hat{\theta} \\ =n \hat{\theta}-n \hat{\theta}_{n}+\hat{\theta}_{n} \\ =n \hat{\theta}-(n-1) \hat{\theta}_{n} \\\end{array}$$
+
+### Propiedades de la varianza
+
+ Sea $X_{1}, \ldots, X_{n}$ una muestra aleatoria y $\bar{X}$ la media muestral. 
+ 
+ Entonces
+ 
+ $$\begin{array}{l}
+V(\bar{X})=\frac{\sigma^{2}}{n} \rightarrow \hat{V}(\bar{X})=\frac{S^{2}}{n} \\
+\hat{V}(\bar{X})=\frac{1}{n(n-1)} \sum_{i=1}^{n}\left(X_{i}-\bar{X}\right)^{2}
+\end{array}$$
+
+Usando los pseudo-valores $\tilde{\theta}_{1}, \ldots, \tilde{\theta}_{n}$
+
+$$\hat{V}\left(\hat{\theta}_{\text {jack }}\right)=\frac{1}{n(n-1)} \sum_{i=1}^{n}\left(\tilde{\theta}_{i}-\frac{1}{n} \sum_{j=1}^{n} \tilde{\theta}_{j}\right)^{2}$$
+
+Shao, J. and Tu, D. 1985. The Jackknife and Bootstrap. Springer.
+Páginas 5 y 6.
+ 
+
+### Ejemplo de juguete
+
+$$\begin{aligned} \hat{\theta} & =\bar{X} . n=3 . \\ x_{1} & =2, x_{2}=3, x_{3}=4, \bar{x}=3 \\ \hat{\theta} & =3, \\ \hat{\theta}_{-1} & =\frac{1}{2}\left(x_{2}+x_{3}\right)=3.5, \\ \hat{\theta}_{-2} & =\frac{1}{2}\left(x_{1}+x_{3}\right)=3.0, \\ \hat{\theta}_{-3} & =\frac{1}{2}\left(x_{1}+x_{2}\right)=2.5, \\ \hat{\theta}_{n} & =\frac{1}{3} \sum_{i=1}^{3} \theta_{-i}=3 .\end{aligned}$$
+
+$$\begin{aligned} \tilde{\theta}_{1} & =3 \hat{\theta}-2\left(\hat{\theta}_{-1}\right)=9-7=2 \\ \tilde{\theta}_{2} & =3 \hat{\theta}-2\left(\hat{\theta}_{-2}\right)=9-6=3 \\ \tilde{\theta}_{3} & =3 \hat{\theta}-2\left(\hat{\theta}_{-3}\right)=9-5=4 \\ \hat{\theta}_{\text {jack }} & =\frac{1}{3} \sum_{i=1}^{3} \tilde{\theta}_{-i}=\frac{1}{3}(2+3+4)=3 \\ \hat{\theta}_{\text {jack }} & =n(\hat{\theta})-(n-1) \hat{\theta}_{n}=3(3)-2(3)=3 \\ V\left(\hat{\theta}_{\text {jack }}\right) & =\frac{1}{6}\left((2-3)^{2}+(3-3)^{2}+(4-3)^{2}\right) \\ & =\frac{1}{6}\left(1^{2}+1^{2}\right)=\frac{1}{3} \\ \hat{\theta} & =\hat{\theta}_{n}=\hat{\theta}_{\text {jack. }} \text { Por qué? }\end{aligned}$$
+
+### Distribución del estimador Jackknife
+
+$$T=\frac{\hat{\theta}_{\text {jack }}-\theta}{\sqrt{\hat{V}\left(\hat{\theta}_{\text {jack }}\right)}} \sim \text { T-student }_{n-1}$$
+
+Miller, R. 1974. The Jackknife-A Review. Biometrika, 61 (1), 1-15
+
+
+### IC Jackknife
+
+Un IC de confianza del $100(1-\alpha)$ para $\theta$ es 
+
+$$\begin{array}{l}
+\left(\hat{\theta}_{\text {jack }} \pm t_{n-1,1-\frac{\alpha}{2}} \sqrt{\hat{V}\left(\hat{\theta}_{\text {jack }}\right)}\right) \\
+\left(\left(\hat{\theta}-\text { Sesgo }_{\text {jack }}\right) \pm t_{n-1,1-\frac{\alpha}{2}} \sqrt{\hat{V}\left(\hat{\theta}_{\text {jack }}\right)}\right)
+\end{array}$$
+
+Estimating Uncertainty in Population Growth Rates: Jackknife vs. Bootstrap Techniques. Meyer, J., Ingersoll, C., McDonald, L and Boyce, M. 1986. Ecology, 67 (5), 1156-1166
+
+
+### Jackknife. Ejemplo con CV
+
+$$\begin{aligned} \hat{C} & =g\left(X_{1}, \ldots, X_{n}\right): C V \text { de la muestra } \\ \hat{C}_{-i} & =C V \text { de }\left(X_{1}, \ldots, X_{i-1}, X_{i+1}, \ldots, X_{n}\right) \\ \hat{C}_{n} & =\frac{1}{n} \sum_{i=1}^{n} \hat{C}_{-i}: \text { Promedio de } C V \\ \hat{C}_{\text {jack }} & =n \hat{C}-(n-1) \hat{C}_{n} \\ V\left(\hat{C}_{\text {jack }}\right) & =\frac{(n-1)}{n} \sum_{i=1}^{n}\left(\hat{C}_{-i}-\hat{C}_{n}\right)^{2} \text { Fórmula alterna } \\ \text { Sesgo jack } & =(n-1)\left(\hat{C}_{n}-\hat{C}\right) \\ I C & =\left(\left(\hat{C}-\text { Sesgo }_{\text {jack }}\right) \pm t_{n-1,1-\frac{\alpha}{2}} \sqrt{V\left(\hat{C}_{\text {jack }}\right)}\right)\end{aligned}$$
+
+### Fórmula alterna de la varianza
+
+Puede demostrarse que
+
+$$\begin{array}{l}
+V\left(\hat{\theta}_{\text {jack }}\right)=\frac{1}{n(n-1)} \sum_{i=1}^{n}\left(\tilde{\theta}_{i}-\frac{1}{n} \sum_{j=1}^{n} \tilde{\theta}_{j}\right)^{2} \text { es igual a } \\
+V\left(\hat{\theta}_{\text {jack }}\right)=\frac{(n-1)}{n} \sum_{i=1}^{n}\left(\hat{\theta}_{-i}-\hat{\theta}_{n}\right)^{2} \text { ver prueba }
+\end{array}$$
+
+En el caso del coeficiente de variación se tiene
+
+$$\begin{array}{l}
+V\left(\hat{C}_{\text {jack }}\right)=\frac{1}{n(n-1)} \sum_{i=1}^{n}\left(\tilde{C}_{i}-\frac{1}{n} \sum_{j=1}^{n} \tilde{C}_{j}\right)^{2} \text { es igual a } \\
+V\left(\hat{C}_{\text {jack }}\right)=\frac{(n-1)}{n} \sum_{i=1}^{n}\left(\hat{C}_{-i}-\hat{C}_{n}\right)^{2}
+\end{array}$$
+
+$$\begin{aligned} V\left(\hat{\theta}_{\mathrm{jack}}\right) & =\frac{1}{n(n-1)} \sum_{i=1}^{n}\left(\tilde{\theta}_{i}-\frac{1}{n} \sum_{j=1}^{n} \tilde{\theta}_{j}\right)^{2} \\ & =\frac{1}{n(n-1)} \sum_{i=1}^{n}\left[n \hat{\theta}-(n-1) \hat{\theta}_{-i}-\frac{1}{n} \sum_{j=1}^{n}\left(n \hat{\theta}-(n-1) \hat{\theta}_{-j}\right)\right]^{2} \\ & =\frac{1}{n(n-1)} \sum_{i=1}^{n}\left[n \hat{\theta}-(n-1) \hat{\theta}_{-i}-\frac{n^{2} \hat{\theta}}{n}+\frac{(n-1)}{n} \sum_{j=1}^{n} \hat{\theta}_{-j}\right]^{2} \\ & =\frac{1}{n(n-1)} \sum_{i=1}^{n}\left[n \hat{\theta}-(n-1) \hat{\theta}_{-i}-n \hat{\theta}+(n-1) \hat{\theta}_{n}\right]^{2}\end{aligned}$$
+ 
+$$\begin{array}{l}=\frac{1}{n(n-1)} \sum_{i=1}^{n}\left[(n-1) \hat{\theta}_{n}-(n-1) \hat{\theta}_{-i}\right]^{2} \\ =\frac{1}{n(n-1)} \sum_{i=1}^{n}\left[(n-1)\left(\hat{\theta}_{n}-\hat{\theta}_{-i}\right)\right]^{2} \\ =\frac{1}{n(n-1)} \sum_{i=1}^{n}\left[(n-1)^{2}\left(\hat{\theta}_{n}-\hat{\theta}_{-i}\right)^{2}\right] \\ =\frac{(n-1)^{2}}{n(n-1)} \sum_{i=1}^{n}\left(\hat{\theta}_{n}-\hat{\theta}_{-i}\right)^{2} \\ =\frac{(n-1)}{n} \sum_{i=1}^{n}\left(\hat{\theta}_{-i}-\hat{\theta}_{n}\right)^{2}\end{array}$$
+
+### Jackknife
+
+AGREGAR TABLA DIAPO 26
+
+### Usando Jackknife
+
+-   Construir un IC del 95% para el coeficiente de variaciÓn asumiendo que tiene una muestra de tamaño 100 de una distribución $\Gamma(3,2))$
+
+-   Ver códigoBootstrapJackniffePermutaciones.R
+
+
+#### Distribución del CV
+
+GRÁFICA DIAPO 28
+
+### Permutaciones
+
+
+-   Se emplea para estudiar de diferencias entre grupos.
+
+-   Se define una estadística de prueba $(T)$ y se calcula con la configuración original de datos $T_{c}$.
+
+-   Se hacen $k$ permutaciones.En cada iteración se calcula $T$.
+    Con base en $\left(T_{1}, T_{2}, \ldots, T_{k}\right)$ se establece la distribución.
+    
+-   Si $T_{c}$ está en los extremos de la distribución se rechaza la hipótesis de igualdad entre los grupos.
+
+-   Ejemplo: Distribución de $\left|\tilde{X}_{1}-\tilde{X}_{2}\right|$ 
+
+-   Ver código BootstrapJackniffePermutaciones.R
+
+
+#### Test de permutaciones
+
+GRÁFICA DIAPO 30
+
+GRÁFICA DIAPO 31
+
+GRÁFICA DIAPO 32
+
+GRÁFICA DIAPO 33
+
+
+## Método para generar muestras aleatorias
+
+-  Se basa en el uso de valores pseudoaletorios uniformes $u$ (los softwares traen algoritmos para obtenerlos: Middle-square, generadores congruenciales, Mersene-Twister,..)
+
+-  Suponga que $X \sim f(x ; \theta)$
+
+-  $F(x ; \theta) \in[0,1]$ 
+
+-  Se genera un valor aleatorio uniforme $u \in[0,1]$ 
+
+-  Se iguala la función de distribución al valor uniforme simulado y se despeja $x$ 
+
+-  Ejercicio: Cómo generar valores aleatorios de una exponencial de parámetro $\theta$ 
+
+
+## Simulaciones de Monte Carlo
+
+
+-  Suponga que $X \sim f(x ; \theta)$
+
+-  Se define una estadística $T_{n}$ 
+
+-  La distribución de la estadística se obtiene calculándola en muchas muestras aleatorias de tamaño $N$ de $X \sim f(x ; \theta)$
+
+-  Se pueden encontrar intervalos de confianza y hacer pruebas de hipótesis a partir de las simulaciones.
+
+-  Ejemplo: Distribución de la varianza $S^{2}$ si 
+$X \sim \Gamma(\alpha=3, \beta=2)$
+
+### Monte Carlo
+
+GRÁFICA DIAPO 36
+
+
+## Validación Cruzada
+
+-  Suponga que tiene $y_{1}, \ldots, y_{n}$ 
+
+-  Quita $y_{i}$, estima el modelo y obtine $\hat{y}_{i}$ (leave-one-out)
+
+-  $S C E=\sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}$. Sirve para comparar modelos
+
+-  Puede hacerse dividiendo la muestra en dos partes (two-fold). 
+   Muestra de entrenamiento y de prueba (training and test)
+   
+-  Ejemplo 1: Aplicación en Regresión
+http://www.sthda.com/english/articles/38-regression-model-validation/157-cross-validation-essentials-in-r/
+
+-  Ejemplo 2. Aplicación en redes Neuronales
+https://www.analyticsvidhya.com/blog/2017/09/creatingvisualizing-neural-network-in-r/
+
+
+## Regresión Lineal y Redes Neuronales
+
+AGREGAR TABLA DIAPO 39
+
+### Gráfico Red Neuronal Datos Cereales
+
+GRÁFICO DIAPO 40
+
+
+
+
+```{r}
+1 + 1
+```
+

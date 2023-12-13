@@ -1,0 +1,170 @@
+# Muestras pareadas
+
+Se presentan cuando cada individuo de la muestra es evaluado en dos ocasiones (por ejemplo antes y después de un tratamiento). También conocidas como emparejadas (matched) o repetidas (repeated).
+
+Las pruebas del Signo y de Wilcoxon para muestras pareadas (Hollander, M. Wolfe, D. and Chichen, E. 2014. Nonparametric Statistical Methods, John Wiley & Sons) son alternativas no paramétricas a la pruebaT-student para muestras pareadas (Hsu, H. and Lachenbruch, P. 2005. Encyclopedia of Biostatistics. Wiley Online Library).
+
+## Ejemplo: Conteo de Bacterias en muestras de leche
+
+Diez muestras de leche se dividen en dos porciones. Una porción se envía al laboratorio I y la otra al laboratorio II. Cada laboratorio hace recuentos bacterianos (miles de bacterias por ml). Los datos se muestran en la tabla a continuación. Con base en los datos puede concluirse que hay diferencias entre los laboratorios?. Puede emplearse una prueba t-student para muestras pareadas?.
+
+Ejemplo: 10 muestras de leche. A cada una se le mide el contenido bacteriano (miles de bacterias por ml) en dos laboratorios. Hay diferencias entre los laboratorios?
+
+PEGAR TABLA DE DIAPOSITIVA 5
+
+## Prueba T pareada. Hipótesis
+
+-   Muestra aleatoria pareada:
+
+    $\left(X_{1_{1}}, X_{2_{1}}\right), \ldots,\left(X_{1_{n}}, X_{2_{n}}\right) . D_{i}=\left(X_{1_{i}}-X_{2_{i}}\right), i=1, \ldots, n.$
+
+-   Muestra aleatoria pareada observada:
+
+    $\left(x_{1_{1}}, x_{2_{1}}\right), \ldots,\left(x_{1_{n}}, x_{2_{n}}\right) \cdot d_{i}=\left(x_{1_{i}}-x_{2_{i}}\right), i=1, \ldots, n \text {. }$
+
+-   Muestra aleatoria: $D_1,...D_n$
+
+-   Hipótesis pueden plantearse como:
+
+    $$\begin{array}{l} 
+    H_{0}: \mu_{D}=0 \\
+    H_{a}: \mu_{D} \neq 0 \\
+    \mu_{D}>0 \\
+    \mu_{D}<0
+    \end{array}$$
+
+## Estadística de Prueba y Región de Rechazo
+
+$$\begin{aligned}
+T & =\frac{\bar{D}}{\frac{S_{D}}{\sqrt{n}}} \sim \text { t-student }_{n-1}, \text { con } \\
+\bar{D} & =\frac{\sum_{i=1}^{n} D_{i}}{n} \text { y } S_{D}=\sqrt{\frac{\sum_{i=1}^{n}\left(D_{i}-\bar{D}\right)^{2}}{n-1} .} \\
+\text { Sea } T_{c} & =\frac{\bar{d}}{\frac{s_{d}}{n}} \operatorname{con} \bar{d}=\frac{\sum_{i=1}^{n} d_{i}}{n} \text { y } s_{d}=\sqrt{\frac{\sum_{i=1}^{n}\left(d_{i}-\bar{d}\right)^{2}}{n-1}}
+\end{aligned}$$
+
+Se rechaza la hipótesis nula al nivel $\alpha$ si
+
+$$\begin{array}{l}
+T_{c}<t_{\frac{\alpha}{2}} \circ T_{c}>t_{1-\frac{\alpha}{2}} \\
+T_{c}<t_{\alpha} \\
+T_{c}>t_{1-\alpha}
+\end{array}$$
+
+## Test del signo. Muestras pareadas
+
+-   Población: sea $(X_1-X_2)$ una variable aleatoria bivariada y $Y=\left(X_{1}-X_{2}\right)$. Suponga que $Y$ tiene mediada $\theta, F_{Y}(\theta)=\frac{1}{2}$ (si $Y$ es continua) o $\circ P(Y \leq \theta) \geq \frac{1}{2}$ y $P(Y \geq \theta) \geq \frac{1}{2}$ (si $Y$ es discreta).
+
+-   Muestra: $Y_{1}, Y_{2}, \ldots, Y_{n}$ una muestra aleatoria de $Y$.
+
+-   Muestra observada $Y_{1}, Y_{2}, \ldots, Y_{n}$ una muestra aleatoria observada de $Y$.
+
+-   HIpótesis:
+
+$$\begin{aligned}
+H_{0}: \theta & =0 \\
+H_{a}: \theta & \neq 0 \\
+\theta & >0 \\
+\theta & <0
+\end{aligned}$$
+
+-   Estadística de prueba y región de rechazo. $H_{a}: \theta>0$
+
+$$S=\sum_{i=1}^{n} \psi_{i}$$ con,
+
+$$\psi_{i}=\left\{\begin{array}{ll}
+1 & \text { if } Y_{i}>0 \\
+0 & \text { if } Y_{i}<0
+\end{array}\right.$$
+
+Bajo $H_{0}, P\left(\psi_{i}=1\right)=P\left(Y_{i}>0\right)=\frac{1}{2}$ $$\Rightarrow S \sim \operatorname{Bin}\left(n, \frac{1}{2}\right)$$ Se rechaza $H_0$ si
+
+$S \geq k$, donde $k$ es tal que $P(S \geq k)=\alpha$, con $\alpha$ el nivel de significancia.
+
+-   Estadística de prueba y región de rechazo. $H_{a}: \theta<0$
+
+$$S=\sum_{i=1}^{n} \psi_{i}$$ con,
+
+$$\psi_{i}=\left\{\begin{array}{ll}
+1 & \text { if } Y_{i}>0 \\
+0 & \text { if } Y_{i}<0
+\end{array}\right.$$
+
+Bajo $H_{0}, P\left(Y_{i}=1\right)=P\left(Y_{i}>0\right)=\frac{1}{2}$
+
+$$\Rightarrow S \sim \operatorname{Bin}\left(n, \frac{1}{2}\right)$$ Se rechaza $H_0$ si
+
+$S \leq k$, donde $k$ es tal que $P(S \leq k)=\alpha$ y $alpha$ es el nivel de significancia.
+
+-   Estadística de prueba y región de rechazo. $H_{a}: \theta \neq 0$
+
+$$S=\sum_{i=1}^{n} \psi_{i}$$
+
+con,
+
+$$\psi_{i}=\left\{\begin{array}{ll}
+1 & \text { if } Y_{i} \geq 0 \\
+0 & \text { if } Y_{i}<0
+\end{array}\right.$$
+
+Bajo $H_{0}, P\left(Y_{i}=1\right)=P\left(Y_{i}>0\right)=\frac{1}{2}$
+
+$$\Rightarrow S \sim \operatorname{Bin}\left(n, \frac{1}{2}\right)$$
+
+Se rechaza $H_0$ si
+
+$S \leq k_{1}$, donde $k_{1}$ es tal que $P\left(S \leq k_{1}\right)=\alpha / 2$, o si $S \geq k_{2}$, donde $k_{2}$ es tal que $P\left(S \geq k_{2}\right)=\alpha / 2$, con $\alpha$ el nivel de significancia.
+
+## Test de Wilcoxon. Muestras pareadas
+
+-   Población: $\left(X_{1}, X_{2}\right)$ variable aleatoria bivariada. $Y=\left(X_{1}-X_{2}\right)$. Suponga que $Y$ tiene distribución continua simétrica con mediana $\theta$.
+
+-   Muestra $Y_{1}, \ldots, Y_{n}$ una muestra aleatoria de $Y$.
+
+-   Hipótesis:
+
+$$\begin{aligned}
+H_{0}: \theta & =0 \\
+H_{a}: \theta & \neq 0 \\
+\theta & >0 \\
+\theta & <0
+\end{aligned}$$
+
+$Y_{1}, Y_{2}, \ldots, Y_{n}$ una muestra aleatoria de $Y$.
+
+$$\psi_{i}=\left\{\begin{array}{ll}
+1 & \text { if } Y_{i} \geq 0 \\
+0 & \text { if } Y_{i}<0
+\end{array}\right.$$
+
+$R_{i}^{+}=$ Posición que ocupa $\left|Y_{i}\right|$ en la sucesión ordenada
+
+$$|Y|_{(1)} \leq|Y|_{(2)} \leq \ldots \leq|Y|_{(n)}$$
+
+-   Estadística de prueba:
+
+$$\begin{array}{l}
+T=\sum_{i=1}^{n} R_{i}^{+} \psi_{i} \\
+T_{c}=\sum_{i=1}^{n} R_{i}^{+} \psi_{i}
+\end{array}$$
+
+Se puede demostrar que
+
+$$\begin{array}{c}
+E(T)=\frac{n(n+1)}{4} \\
+V(T)=\frac{n(n+1)(2 n+1)}{24}
+\end{array}$$
+
+-   Distribución asintótica: Para $n$ grande.
+
+$$Z=\frac{T-E(T)}{\sqrt{V(T)}} \sim N(0,1)$$ El valor calculado de la estadística de prueba es
+
+$$Z_{c}=\frac{T_{c}-E(T)}{\sqrt{V(T)}}$$
+
+Región de rechazo. $H_a:\theta>0$ Se rechaza $H_0$ si $Z_{c}>z_{1-\alpha}$.
+
+Región de rechazo. $H_a:\theta<0$ Se rechaza $H_0$ si $Z_{c}<z_{\alpha}$
+
+Región de rechazo. $H_a:\theta \neq 0$ Se rechaza $H_0$ si $Z_{c}<z_{\frac{\alpha}{2}} \circ Z_{c}>z_{1-\frac{\alpha}{2}}$
+
+```{r}
+1 + 1
+```

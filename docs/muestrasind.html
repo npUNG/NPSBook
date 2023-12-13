@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estadistica No Parametrica - 2&nbsp; Summary</title>
+<title>Estadistica No Parametrica - 5&nbsp; Muestras independientes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./signo.html" rel="next">
-<link href="./intro.html" rel="prev">
+<link href="./anova.html" rel="next">
+<link href="./pareadas.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -97,6 +97,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -109,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./summary.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./muestrasind.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Muestras independientes</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -151,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link active">
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
@@ -169,7 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./muestrasind.html" class="sidebar-item-text sidebar-link">
+  <a href="./muestrasind.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Muestras independientes</span></span></a>
   </div>
 </li>
@@ -215,14 +217,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#prueba-clásica-asumiendo-normalidad-prueba-t-de-dos-muestras-independientes" id="toc-prueba-clásica-asumiendo-normalidad-prueba-t-de-dos-muestras-independientes" class="nav-link active" data-scroll-target="#prueba-clásica-asumiendo-normalidad-prueba-t-de-dos-muestras-independientes"><span class="header-section-number">5.1</span> Prueba clásica asumiendo normalidad Prueba T de dos muestras independientes</a>
+  <ul class="collapse">
+  <li><a href="#estadística-de-prueba-y-región-de-rechazo" id="toc-estadística-de-prueba-y-región-de-rechazo" class="nav-link" data-scroll-target="#estadística-de-prueba-y-región-de-rechazo"><span class="header-section-number">5.1.1</span> Estadística de prueba y región de rechazo</a></li>
+  </ul></li>
+  <li><a href="#pruebas-no-paramétricas-para-dos-muestras-independientes" id="toc-pruebas-no-paramétricas-para-dos-muestras-independientes" class="nav-link" data-scroll-target="#pruebas-no-paramétricas-para-dos-muestras-independientes"><span class="header-section-number">5.2</span> Pruebas no paramétricas para dos muestras independientes</a></li>
+  <li><a href="#pruebas-de-wilcoxon-y-de-mann-whitney" id="toc-pruebas-de-wilcoxon-y-de-mann-whitney" class="nav-link" data-scroll-target="#pruebas-de-wilcoxon-y-de-mann-whitney"><span class="header-section-number">5.3</span> Pruebas de Wilcoxon y de Mann-Whitney</a>
+  <ul class="collapse">
+  <li><a href="#ejemplo-dieta-de-cabras" id="toc-ejemplo-dieta-de-cabras" class="nav-link" data-scroll-target="#ejemplo-dieta-de-cabras"><span class="header-section-number">5.3.1</span> Ejemplo dieta de cabras</a></li>
+  <li><a href="#supuesto-poblacional-e-hipótesis" id="toc-supuesto-poblacional-e-hipótesis" class="nav-link" data-scroll-target="#supuesto-poblacional-e-hipótesis"><span class="header-section-number">5.4.1</span> Supuesto poblacional e hipótesis</a></li>
+  <li><a href="#normal" id="toc-normal" class="nav-link" data-scroll-target="#normal"><span class="header-section-number">5.4.2</span> Normal</a></li>
+  <li><a href="#exponencial-y-exponencial-desplazada" id="toc-exponencial-y-exponencial-desplazada" class="nav-link" data-scroll-target="#exponencial-y-exponencial-desplazada"><span class="header-section-number">5.4.3</span> Exponencial y exponencial desplazada</a></li>
+  <li><a href="#weibull-y-weibull-desplazada" id="toc-weibull-y-weibull-desplazada" class="nav-link" data-scroll-target="#weibull-y-weibull-desplazada"><span class="header-section-number">5.4.4</span> Weibull y Weibull Desplazada</a></li>
+  <li><a href="#estadística-de-prueba" id="toc-estadística-de-prueba" class="nav-link" data-scroll-target="#estadística-de-prueba"><span class="header-section-number">5.4.5</span> Estadística de prueba</a></li>
+  <li><a href="#distribución-asintótica" id="toc-distribución-asintótica" class="nav-link" data-scroll-target="#distribución-asintótica"><span class="header-section-number">5.4.6</span> Distribución asintótica</a></li>
+  <li><a href="#distribución-exacta" id="toc-distribución-exacta" class="nav-link" data-scroll-target="#distribución-exacta"><span class="header-section-number">5.4.7</span> Distribución exacta</a></li>
+  <li><a href="#empates" id="toc-empates" class="nav-link" data-scroll-target="#empates"><span class="header-section-number">5.4.8</span> Empates</a></li>
+  </ul></li>
+  <li><a href="#test-de-mann-whitney" id="toc-test-de-mann-whitney" class="nav-link" data-scroll-target="#test-de-mann-whitney"><span class="header-section-number">5.5</span> Test de Mann-Whitney</a>
+  <ul class="collapse">
+  <li><a href="#hipótesis" id="toc-hipótesis" class="nav-link" data-scroll-target="#hipótesis"><span class="header-section-number">5.5.1</span> Hipótesis</a></li>
+  <li><a href="#estadística-de-prueba-1" id="toc-estadística-de-prueba-1" class="nav-link" data-scroll-target="#estadística-de-prueba-1"><span class="header-section-number">5.5.2</span> Estadística de prueba</a></li>
+  <li><a href="#distribución-asintótica-1" id="toc-distribución-asintótica-1" class="nav-link" data-scroll-target="#distribución-asintótica-1"><span class="header-section-number">5.5.3</span> Distribución asintótica</a></li>
+  <li><a href="#ejemplo-r" id="toc-ejemplo-r" class="nav-link" data-scroll-target="#ejemplo-r"><span class="header-section-number">5.5.4</span> Ejemplo R</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Muestras independientes</span></h1>
 </div>
 
 
@@ -237,7 +268,183 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>In summary, this book has no content whatsoever.</p>
+<section id="prueba-clásica-asumiendo-normalidad-prueba-t-de-dos-muestras-independientes" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="prueba-clásica-asumiendo-normalidad-prueba-t-de-dos-muestras-independientes"><span class="header-section-number">5.1</span> Prueba clásica asumiendo normalidad Prueba T de dos muestras independientes</h2>
+<ul>
+<li><p>Muestra aleatoria <span class="math inline">\(X_{1}, \ldots, X_{n}, Y_{1}, \ldots, Y_{m}\)</span></p></li>
+<li><p>Muestra aleatoria observada <span class="math inline">\(x_{1}, \ldots, x_{n}, y_{1}, \ldots, y_{m}\)</span></p></li>
+<li><p>Hipótesis</p></li>
+</ul>
+<p><span class="math display">\[\begin{aligned}
+H_{0}: \mu_{1} &amp; =\mu_{2} \\
+H_{a}: \mu_{1} &amp; \neq \mu_{2} \\
+\mu_{1} &amp; &gt;\mu_{2} \\
+\mu_{1} &amp; &lt;\mu_{2}
+\end{aligned}\]</span></p>
+<section id="estadística-de-prueba-y-región-de-rechazo" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="estadística-de-prueba-y-región-de-rechazo"><span class="header-section-number">5.1.1</span> Estadística de prueba y región de rechazo</h3>
+<p><span class="math display">\[\begin{aligned}
+T &amp; =\frac{(\bar{X}-\bar{Y})}{S_{p} \sqrt{\frac{1}{n}+\frac{1}{m}}} \sim \text { t-student }{ }_{n+m-2}, \text { con } \\
+S_{p} &amp; =\sqrt{\frac{(n-1) S_{x}^{2}+(m-1) S_{y}^{2}}{n+m-2}} . \\
+S_{\text {Sea }} T_{c} &amp; =\frac{(\bar{x}-\bar{y})}{s_{p} \sqrt{\frac{1}{n}+\frac{1}{m}}} \operatorname{con} s_{p}=\sqrt{\frac{(n-1) s_{x}^{2}+(m-1) s_{y}^{2}}{n+m-2}}
+\end{aligned}\]</span></p>
+<p>Se rechaza la hipótesis nula al nivel <span class="math inline">\(\alpha\)</span> si</p>
+<p><span class="math display">\[\begin{array}{l}
+T_{c}&lt;t_{\frac{\alpha}{2}} \circ T_{c}&gt;t_{1-\frac{\alpha}{2}} \\
+T_{c}&gt;t_{1-\alpha} \\
+T_{c}&lt;t_{\alpha}
+\end{array}\]</span></p>
+</section>
+</section>
+<section id="pruebas-no-paramétricas-para-dos-muestras-independientes" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="pruebas-no-paramétricas-para-dos-muestras-independientes"><span class="header-section-number">5.2</span> Pruebas no paramétricas para dos muestras independientes</h2>
+<ul>
+<li><p>Los datos provienen de distribuciones continuas</p></li>
+<li><p>Se asume independencia (dentro de muestras y entre muestras)</p></li>
+<li><p>Las pruebas de Wilcoxon y de Mann-Whitney para dos muestras son alternativas no paramétricas a la prueba T-student para dos muestras.</p></li>
+</ul>
+</section>
+<section id="pruebas-de-wilcoxon-y-de-mann-whitney" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="pruebas-de-wilcoxon-y-de-mann-whitney"><span class="header-section-number">5.3</span> Pruebas de Wilcoxon y de Mann-Whitney</h2>
+<ul>
+<li><p>Dos versiones del test, descritas comoU de Mann–Whitney y W de Wilcoxon, fueron independientemente desarrolladas por Mann y Whitney (1947) y Wilcoxon (1949).</p></li>
+<li><p>La versión por Wilcoxon (1949) es usualmente llamada test W de Wilcoxon–Mann-Whitney.</p></li>
+<li><p>Aunque se emplean diferentes ecuaciones y diferentes tablas de distribuciones exactas, las dos versiones producen resultados comparables.</p></li>
+</ul>
+<section id="ejemplo-dieta-de-cabras" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored"><span class="header-section-number">5.3.1</span> Ejemplo dieta de cabras</h3>
+<ul>
+<li><p>Tomado de McFarland, T and Yates, J. 2016. Introduction to non parametric statistics for the biological sciences using R. Springer. Una manada de 30 cabras fue dividida en dos grupos. La asignación al grupo 1 o al grupo 2 se basó en una selección aleatoria.</p></li>
+<li><p>Grupo 1: Control. Estas cabras recibieron alimentación regular durante el tratamiento.</p></li>
+<li><p>Grupo 2: Tratamiento. Estas cabras recibieron un suplemento mineral además de la alimentación regular. Respuesta: Un valor (índice) entre 40 y 100 dependiendo de las condiciones de la cabra.</p>
+<p>Ejemplo: 15 cabras asignadas a un grupo control (dieta regular) y uno un grupo de tratamiento (dieta regular con adición de minerales). La respuesta es un índice con valores entre 40 y 100.</p>
+<p>PEGAR TABLA DE DIAPOSITIVA 8</p>
+<h2 id="test-de-wilcoxon" data-number="5.4" class="anchored" data-anchor-id="ejemplo-dieta-de-cabras"><span class="header-section-number">5.4</span> Test de Wilcoxon</h2></li>
+</ul>
+</section>
+<section id="supuesto-poblacional-e-hipótesis" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="supuesto-poblacional-e-hipótesis"><span class="header-section-number">5.4.1</span> Supuesto poblacional e hipótesis</h3>
+<ul>
+<li><p><span class="math inline">\(X_{1} \ldots, X_{m}\)</span> muestra aleatoria de <span class="math inline">\(X \sim F_{X}(t)\)</span> continua</p></li>
+<li><p><span class="math inline">\(Y_{1} \ldots, Y_{n}\)</span> muestra aleatoria de <span class="math inline">\(Y \sim F_{Y}(t)\)</span> continua</p></li>
+<li><p>Independencia entre <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span></p></li>
+<li><p>Hipótesis</p></li>
+</ul>
+<p><span class="math display">\[\begin{array}{l}
+H_{0}: F_{Y}(t)=F_{X}(t) \text { para todo } t \\
+H_{a}: F_{Y}(t)=F_{X}(t-\Delta) \text { para todo } t \text { y algún } \Delta \neq 0
+\end{array}\]</span></p>
+<p>Gibbons, J and Chakraborti, S. 2003. Nonparametrical Statistical Inference. Marcel Dekker.</p>
+</section>
+<section id="normal" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="normal"><span class="header-section-number">5.4.2</span> Normal</h3>
+<p>PEGAR FIGURA DIAPOSITIVA 10</p>
+</section>
+<section id="exponencial-y-exponencial-desplazada" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="exponencial-y-exponencial-desplazada"><span class="header-section-number">5.4.3</span> Exponencial y exponencial desplazada</h3>
+<p>PEGAR FIGURA DIAPOSITIVA 11</p>
+</section>
+<section id="weibull-y-weibull-desplazada" class="level3" data-number="5.4.4">
+<h3 data-number="5.4.4" class="anchored" data-anchor-id="weibull-y-weibull-desplazada"><span class="header-section-number">5.4.4</span> Weibull y Weibull Desplazada</h3>
+<p>PEGAR FIGURA DIAPOSITIVA 12</p>
+<p>∆ en (1) se llama parámetro de desplazo o efecto de tratamiento.</p>
+<ul>
+<li>Las hipótesis pueden plantearse como</li>
+</ul>
+<p><span class="math display">\[\begin{aligned}
+H_{0}: \Delta &amp; =0 \\
+H_{a}: \Delta &amp; \neq 0 \\
+\Delta &amp; &gt;0 \\
+\Delta &amp; &lt;0
+\end{aligned}\]</span></p>
+<ul>
+<li>Muestra Combinada: sea <span class="math inline">\(X_{1}, X_{2}, \ldots, X_{m}, X_{m+1}, \ldots, X_{N}\)</span>, <span class="math inline">\(N=m+n\)</span> la muestra combinada. <span class="math inline">\(X^{\prime} s\)</span> <span class="math inline">\(X_{m+1}, \ldots, X_{N}\)</span> las observaciones de las <span class="math inline">\(Y^{\prime} s\)</span>.</li>
+</ul>
+</section>
+<section id="estadística-de-prueba" class="level3" data-number="5.4.5">
+<h3 data-number="5.4.5" class="anchored" data-anchor-id="estadística-de-prueba"><span class="header-section-number">5.4.5</span> Estadística de prueba</h3>
+<ul>
+<li>Se ordena la muestra combinada de <span class="math inline">\(N=m+n\)</span> variables.</li>
+<li>Llámese <span class="math inline">\(W=\)</span> suma de los rangos de las <span class="math inline">\(Y^{\prime} s\)</span> en la muestra combinada. Sean <span class="math inline">\(S_{1}, S_{2}, \ldots, S_{n}\)</span>. (W puede definirse como la suma de los rangos de las <span class="math inline">\(X^{\prime} s\)</span>)</li>
+</ul>
+<p><span class="math display">\[\begin{aligned}
+W &amp; =\sum_{i=1}^{n} S_{j} \\
+\mathbb{E}(W) &amp; =\frac{n(N+1)}{2}=\frac{n(m+n+1)}{2} \\
+\mathbb{V}(W) &amp; =\frac{n m(N+1)}{12}=\frac{n m(m+n+1)}{12}
+\end{aligned}\]</span></p>
+</section>
+<section id="distribución-asintótica" class="level3" data-number="5.4.6">
+<h3 data-number="5.4.6" class="anchored" data-anchor-id="distribución-asintótica"><span class="header-section-number">5.4.6</span> Distribución asintótica</h3>
+<p><span class="math display">\[Z=\frac{W-\mathbb{E}(W)}{\sqrt{\mathbb{V}(W)}} \sim N(0,1)\]</span></p>
+<p>Se rechaza la hipótesis nula <span class="math inline">\(\alpha\)</span> si</p>
+<p><span class="math display">\[\begin{array}{l}
+Z_{c}&lt;z_{\frac{\alpha}{2}} \circ Z_{c}&gt;z_{1-\frac{\alpha}{2}} \\
+Z_{c}&gt;z_{1-\alpha} \\
+Z_{c}&lt;z_{\alpha}
+\end{array}\]</span></p>
+</section>
+<section id="distribución-exacta" class="level3" data-number="5.4.7">
+<h3 data-number="5.4.7" class="anchored" data-anchor-id="distribución-exacta"><span class="header-section-number">5.4.7</span> Distribución exacta</h3>
+<p>Suponga <span class="math inline">\(m =3\)</span> valores de <span class="math inline">\(X\)</span> y <span class="math inline">\(n = 2\)</span> valores de <span class="math inline">\(Y\)</span>. Los rangos van entre 1 y 5. Ver Hollander and Wolfe página 108.</p>
+<p>PEGAR TABLA DIAPOSITIVA 16</p>
+</section>
+<section id="empates" class="level3" data-number="5.4.8">
+<h3 data-number="5.4.8" class="anchored" data-anchor-id="empates"><span class="header-section-number">5.4.8</span> Empates</h3>
+<ul>
+<li>Caso de distribución exacta: Se da a las observaciones empatadas el promedio de los correspondientes rangos, se calcula W y se usa la misma tabla</li>
+<li>Si se emplea la distribución asintótica cambia la varianza</li>
+</ul>
+<p><span class="math display">\[V(W)=\frac{m n(N+1)}{12}-\left(\frac{m n}{12 N(N-1)} \sum_{j=1}^{g}\left(t_{j}-1\right) t_{j}\left(t_{j}+1\right)\right)\]</span></p>
+<p>con <span class="math inline">\(g\)</span> el número de grupos con empates y <span class="math inline">\(t_{j}\)</span> el número de observaciones empatadas en el j-ésimo grupo.</p>
+</section>
+</section>
+<section id="test-de-mann-whitney" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="test-de-mann-whitney"><span class="header-section-number">5.5</span> Test de Mann-Whitney</h2>
+<section id="hipótesis" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="hipótesis"><span class="header-section-number">5.5.1</span> Hipótesis</h3>
+<p>Como en el test de Wilcoxon, las hip´otesis pueden plantearse como</p>
+<p><span class="math display">\[\begin{aligned} H_{0}: \Delta &amp; =0 \\ H_{a}: \Delta &amp; \neq 0 \\ \Delta &amp; &gt;0 \\ \Delta &amp; &lt;0\end{aligned}\]</span></p>
+</section>
+<section id="estadística-de-prueba-1" class="level3" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="estadística-de-prueba-1"><span class="header-section-number">5.5.2</span> Estadística de prueba</h3>
+<p>Sea</p>
+<p><span class="math display">\[\phi(a)=\left\{\begin{array}{ll}
+1 &amp; \text { if } a&gt;0 \\
+0 &amp; \text { if } a&lt;0
+\end{array}\right.\]</span></p>
+<p>La estadística de Mann-Whitney se define como:</p>
+<p><span class="math display">\[\begin{aligned}
+U &amp; =\sum_{i=1}^{n} \sum_{j=1}^{m} \phi\left(Y_{i}-X_{j}\right) \\
+&amp; =\#\left(Y_{i}-X_{j}\right)&gt;0
+\end{aligned}\]</span></p>
+<p>Si no hay empates</p>
+<p><span class="math display">\[U=W-\frac{n(n+1)}{2}\]</span></p>
+</section>
+<section id="distribución-asintótica-1" class="level3" data-number="5.5.3">
+<h3 data-number="5.5.3" class="anchored" data-anchor-id="distribución-asintótica-1"><span class="header-section-number">5.5.3</span> Distribución asintótica</h3>
+<p><span class="math display">\[\begin{aligned} U &amp; =W-\frac{n(n+1)}{2} \\ \mathbb{E}(U) &amp; =\mathbb{E}(W)-\frac{n(n+1)}{2} \\ &amp; =\frac{n(N+1)}{2}-\frac{n(n+1)}{2} \\ &amp; =\frac{n(N+1)-n(n+1)}{2} \\ &amp; =\frac{n(N+1-(n+1))}{2} \\ &amp; =\frac{n(n+m+1)-(n+1)}{2} \\ &amp; =\frac{n m}{2}\end{aligned}\]</span></p>
+<p><span class="math display">\[\begin{aligned}
+U &amp; =W-\frac{n(n+1)}{2} \\
+\mathbb{V}(U) &amp; =\mathbb{V}(W)-\mathbb{V}\left(\frac{n(n+1)}{2}\right) \\
+&amp; =\frac{n m(m+n+1)}{12} \\
+Z &amp; =\frac{U-\mathbb{E}(U)}{\sqrt{\mathbb{V}(U)}} \sim N(0,1)
+\end{aligned}\]</span></p>
+<p>Se rechaza la hipótesis nula al nivel <span class="math inline">\(\alpha\)</span> si</p>
+<p><span class="math display">\[\begin{array}{l}
+Z_{c}&lt;z_{\frac{\alpha}{2}} \circ Z_{c}&gt;z_{1-\frac{\alpha}{2}} \\
+Z_{c}&gt;z_{1-\alpha} \\
+Z_{c}&lt;z_{\alpha}
+\end{array}\]</span></p>
+</section>
+<section id="ejemplo-r" class="level3" data-number="5.5.4">
+<h3 data-number="5.5.4" class="anchored" data-anchor-id="ejemplo-r"><span class="header-section-number">5.5.4</span> Ejemplo R</h3>
+<ul>
+<li><p>Ver código R: Wilcoxon y Mann-Whitney.R</p></li>
+<li><p>Usar la base de datos Goats.df correspondiente a los datos de las cabras arriba descritos.</p></li>
+<li><p>Hacer la prueba T de dos muestras y el test de Wilcoxon (R lo llama Wilcoxon pero calcula la estadística de Mann-Whitney).</p></li>
+</ul>
+<p>REVISAR SI EL CÓDIGO R VA EN ESTA PARTE</p>
+<p>FALTAN DIAPOSITIVAS 23-25 CREO QUE SALE DEL CÓDIGO</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -246,6 +453,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -598,13 +807,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./intro.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      <a href="./pareadas.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Muestras pareadas</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./signo.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Test del Signo</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./anova.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Anova una vía</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

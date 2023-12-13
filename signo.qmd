@@ -1,0 +1,212 @@
+# Test del Signo
+
+## Tipos de variables y escalas de medida
+
+### Cualitativas
+
+Escala Nominal: Se presenta cuando los datos no pueden ser ordenados en una secuencia de grados del atributo. p. ej. épocas climáticas (seco, lluvioso), género (hombre, mujer) sitios geográficos (costa, interior llanos, sur), color (rojo, verde, amarillo), marca (renault, mazda, chevrolet), religión (católico, protestante, judaísmo, islam).
+
+Escala Ordinal: Los datos que pueden ser ordenados de menor a mayor o viceversa, pero las distancias entre los elementos ordenados no tienen ningún sentido físico. Ej: Estrato (I, II,...,VI), Abundancia (abundante, escaso, raro), calidad (buena, mala, regular),talla (grande, mediano, pequeño).
+
+Los valores ordinales no pueden someterse a operaciones matemáticas como la adición; por eso, no es posible afirmar que el nivel abundante es tres veces mayor que el estado raro.
+
+### Cuantitativas
+
+Cantidades, que son el resultado de mediciones de algún instrumento, conteos de eventos o de operaciones matemáticas simples. Estos pueden ser
+
+-   Discretas: Pueden tomar solo un número finito de posibles valores en la escala de los reales. Ej: número de habitaciones por vivienda, número de hijos por familia, número de peces por estanque, número de temblores por región, número de pacientes por hospital.
+
+-   Continuas: Son aquellos en los que existe potencialmente un número infinito de valores entre dos puntos de la escala. Pueden ser datos enteros o fraccionarios, p. ej. Ingreso (pesos), temperatura (grados celsius), peso (kg), tensión arterial (mmHg).
+
+-   Derivadas: Son datos generados a partir de cálculos simples de las medidas discretas o continuas, p. ej. índices, tasas, proporciones, etc.
+
+## Razón, Proporción, Tasa
+
+-   Razón: El numerador no forma parte del denominador. Ej. Número de Personas del Hogar/Número de habitaciones, Número de pacientes/Número de camas, Número de diabéticos/Número de no diabéticos, Número de hombres/Número de mujeres, índice de peso-talla=Kg/(cms-100).
+
+-   Proporción:El numerador hace parte del denominador. Ej: pacientes recuperados/pacientes tratados, alumnos que aprobaron el examen/ alumnos que presentaron el examen, peso cabeza/peso corporal (no necesariamente conteos!)
+
+-   Tasa: razón o proporción en la que se define un tiempo de ocurrencia. Ej: a) nacidos vivos periodo /mujeres entre 15 y 50 años en el periodo, b) casos en el periodo/población en riesgo en el periodo.
+
+## Introducción
+
+Métodos estadísticos no paramétricos:
+
+-   Tienen supuestos distribucionales más flexibles. Las pruebas clásicas (una muestra, dos muestras, k muestras) asumen normalidad. Hay alternativas no paramétricas libres de este supuesto.
+
+Hay técnicas apropiadas para el estudio de variables con escala nominal y ordinal.
+
+## Mediana
+
+-   Población: Sea $X$ una variable aleatoria con distribución $F_x(X)$. La mediana $(\theta)$ es un valor tal que $F_x(\theta)=\frac{1}{2}$ (si $X$ es continua) o $P(x\leq\theta)\geq\frac{1}{2}$ y $P(x\geq\theta)\geq\frac{1}{2}$ (si $X$ es discreta).
+-   Sea $X$ \~ exponencial($\lambda=3$). Halle la mediana.
+-   Sea $X$ \~ binomial $(n = 9; p =\frac{1}{4})$. Compruebe que la mediana es 2.
+
+## Mediana No Única
+
+-   Población: Sea $X$ \~ binomial $(n=21; p=0.5)$
+-   $P(X\leq10)=0.5$ y $P(X\geq10)=0.67$. Entonces $X=10$ es una mediana.
+-   $P(X\leq11)=0.67$ y $P(X\geq11)=0.5$. Entonces $X=11$ es una mediana.
+-   $X$ \~ binomial $(n = 21; p =0.5)$ la mediana no es única.
+
+### Test del Signo
+
+Población: Sea $X$ una variable aleatoria cuya distribución tiene mediana $\theta$, es decir $\theta$ es un valor tal que $F_x(\theta)=\frac{1}{2}$ Muestra: $X_1$; $X_2$;...; $X_n$ una muestra aleatoria de $X$.
+
+Hipótesis:
+
+$$\begin{aligned} H_{0}: \theta & =\theta_{0} \\ H_{a}: \theta & \neq \theta_{0} \\ \theta & >\theta_{0} \\ \theta & <\theta_{0}\end{aligned}$$ Sea $Y_1=X_1-\theta_0...;Y_n=X_n-\theta_0$. Entonces las hipótesis pueden plantearse como
+
+$$\begin{aligned} H_{0}: \theta & =0 \\ H_{a}: \theta & \neq 0 \\ \theta & >0 \\ \theta & <0\end{aligned}$$ Es claro que $\theta$ representa la mediana de $Y$.
+
+$$\psi_{i}=\left\{\begin{array}{ll}1 & \text { if } Y_{i}>0 \\ 0 & \text { if } Y_{i}<0\end{array}\right.$$
+
+Bajo $H_{0}, P\left(\psi_{i}=1\right)=P\left(Y_{i}>0\right)=\frac{1}{2}$
+
+$$S=\sum_{i=1}^{n} \psi_{i} \sim \operatorname{Bin}\left(n, \frac{1}{2}\right)$$
+
+-   Estadística de prueba y región de rechazo. $H_a:\theta>0$
+
+Se rechaza $H_0$ si $S \geq b_{(1-\alpha, 1 / 2)}$ donde $b_{(1-\alpha, 1 / 2)}$ es el percentil $1-\alpha$ de la distribución binomial $n,p=\frac{1}{2}$.
+
+```{r}
+# Una cola superior: Se rechaza la nivel alpha=6\% si Sc>11
+n=15
+p=.5
+x=seq(0, n, by=1)
+cbind(x,round(pbinom(x-1, n, p, lower.tail=FALSE) ,2))
+```
+
+-   Estadística de prueba y región de rechazo. $H_a:\theta<0$
+
+Se rechaza $H_0$ si $S \leq n-b_{(1-\alpha, 1 / 2)}$, donde $b_{(1-\alpha, 1 / 2)}$ es el percentil $1-\alpha$ de la distribución binomial $n,p=\frac{1}{2}$
+
+```{r}
+# Una cola inferior: Se rechaza al nivel alpha=6\% si Sc<=4
+n=15
+p=.5
+x=seq(0, n, by=1)
+cbind(x,round(pbinom(x, n, p) ,2))
+```
+
+-   Estadística de prueba y región de rechazo. $H_a:\theta \neq 0$
+
+Se rechaza $H_0$ si $S \leq n-b_{(1-\alpha /2, 1 / 2)}$ o $S \geq b_{(1-\alpha/2, 1 / 2)}$, donde $b_{(1-\alpha/2, 1 / 2)}$ es el percentil $1-\alpha/2$ de la distribución binomial $n,p=\frac{1}{2}$.
+
+```{r}
+# Dos colas: Se rechaza la nivel alpha=12\% si Sc>=11 o Sc<=4 
+n=15
+p=.5
+x=seq(0, n, by=1)
+cbind(x,round(pbinom(x, n, p) ,2), round(pbinom(x-1, n, p, lower.tail=FALSE) ,2))
+```
+
+```{r}
+# alpha=10% un cola inferior
+# Se rechaza $H_0$ si $S\geq b_{(\alpha, 1/2)}$, 
+# donde $b_{(\alpha, 1/2)}$ es el percentil $\alpha$ 
+# de la distribuci?n binomial $(n, p=1/2)$
+```
+
+## Resultados asintóticos
+
+-   $X_1,...X_n$ m.a de $X$ con distribución $P(X \leq x)$
+-   Asintóticamente $\sum_{i=1}^{n} X_{i} \sim N\left(E\left(\sum_{i=1}^{n} X_{i}\right), V\left(\sum_{i=1}^{n} X_{i}\right)\right)$
+-   Asintóticamente $Z=\left(\frac{\sum_{i=1}^{n} x_{i}-E\left(\sum_{i=1}^{n} x_{i}\right)}{\sqrt{V\left(\sum_{i=1}^{n} x_{i}\right)}}\right) \sim N(0,1)$
+-   Asintóticamente $\bar{X} \sim N(\mathbb{E}(\bar{X}), \mathbb{V}(\bar{X}))$
+-   Asintóticamente $Z=\left(\frac{\bar{X}-\mathbb{E}(\bar{X})}{\sqrt{\mathbb{V}(\bar{X})}}\right) \sim N(0,1)$
+-   $\psi_{1},...\psi_{n}$ m.a. con $\psi_{i}$ \~ Bernoulli (1/2)
+-   Asintóticamente $S=\sum_{i=1}^{n} \psi_{i} \sim N\left(\frac{n}{2}, \frac{n}{4}\right)$
+-   Asintóticamente $Z=\left(\frac{S-\left(\frac{n}{2}\right)}{\sqrt{\left(\frac{n}{4}\right)}}\right) \sim N(0,1)$
+-   Asintóticamente $\frac{S}{n} \sim N\left(\left(\frac{1}{2}\right),\left(\frac{1}{4 n}\right)\right)$
+-   Asintóticamente $Z=\left(\frac{\frac{S}{n}-\left(\frac{1}{2}\right)}{\sqrt{\left(\frac{1}{4 n}\right)}}\right) \sim N(0,1)$
+
+## Test del signo
+
+Usando la Distribución Asintóticapara el caso de $H_a:\theta>0$. Encontrar, empleando la distribución asintótica, el valor de $k$ tal que $P(S\geq k)=\alpha$
+
+$$Z=\frac{S-\frac{n}{2}}{\sqrt{\frac{n}{4}}} \sim N(0,1)$$ $$\begin{aligned} P(S \geq k) & =P\left(\frac{S-\frac{n}{2}}{\sqrt{\frac{n}{4}}}>\frac{k-\frac{n}{2}}{\sqrt{\frac{n}{4}}}\right) \\ & =P\left(Z>\frac{k-\frac{n}{2}}{\sqrt{\frac{n}{4}}}\right) \\ & =P\left(Z>Z_{1-\alpha}\right) \\ k & =\frac{n}{2}+Z_{1-\alpha} \sqrt{\frac{n}{4}}\end{aligned}$$ Ejemplo:El porcentaje de bacterias en muestras de agua de desecho no debe ser superior al 40%. La observación de 10 "muestras" de agua de desecho arrojó los siguientes porcentajes:
+
+$$\begin{array}{r}
+x_{i}=41,33,43,52,46,37,44,49,53,30 . \\
+H_{0}: \theta=40 \\
+H_{a}: \theta>40
+\end{array}$$
+
+Se obtienen los datos:
+
+$$\begin{array}{l}
+y_{i}=\left(x_{i}-40\right)=1,-7,3,12,3,-3,4,9,13,-10 . \\
+\psi_{i}=1,0,1,1,1,0,1,1,1,0 . \\
+S_{c}=\sum_{i=1}^{n} \psi_{i}=7 . \quad P(S \geq 7)=0.172 \quad S \sim \operatorname{Bin}(10,1 / 2) .
+\end{array}$$
+
+si $\alpha=5 \%$ entonces se rechaza $H_0$
+
+## Test de Wilcoxon
+
+Población: $X$ una variable aleatoria con distribución simétrica y continua de mediana $\theta$ (Hollander, M. and Wolfe, D. 1999. Nonparametric Statistical Methods. John Wiley & Sons)
+
+Distribuciones simétricas continuas: Weibull, Gamma, Beta, Uniforme, Triangular, etc.
+
+Muestra: $X_1, X_2,...X_n$ una muestra aleatoria de $X$.
+
+Hipótesis
+
+$$\begin{aligned} H_{0}: & =\theta_{0} \\ H_{a}: \theta & \neq \theta_{0} \\ \theta & >\theta_{0} \\ \theta & <\theta_{0}\end{aligned}$$ $Y_{1}=X_{1}-\theta_{0}, Y_{2}=X_{2}-\theta_{0}, \ldots, Y_{n}=X_{n}-\theta_{0}$ una muestra aleatoria de $X$
+
+$$\psi_{i}=\left\{\begin{array}{ll}
+1 & \text { if } Y_{i}>0 \\
+0 & \text { if } Y_{i}<0
+\end{array}\right.$$
+
+$R_{i}^{+}=$ posición que ocupa $\left|Y_{i}\right|$ en la sucesión ordenada $$|Y|_{(1)} \leq|Y|_{(2)} \leq \cdots \leq|Y|_{(n)}$$ Estadística de prueba:
+
+$$T=\sum_{i=1}^{n} R_{i}^{+} \psi_{i}$$ ver Tabla A.4 Hollander & Wolfe para valores críticos. Se puede demostrar (ejercicio) que cuando $n$ es grande
+
+$$\begin{array}{c}
+E(T)=\frac{n(n+1)}{4} \\
+V(T)=\frac{n(n+1)(2 n+1)}{24}
+\end{array}$$
+
+Distribución Asintótica: Para $n$ grande
+
+$$Z=\frac{T-E(T)}{\sqrt{V(T)}} \sim N(0,1)$$
+
+Región de rechazo
+
+Se rechaza $H_0$ si $T\geq k$, con $k$ tal que $P(T\geq k) =\alpha$
+
+$$k=\frac{n(n+1)}{4}+Z_{1-\alpha} \sqrt{\frac{n(n+1)(2 n+1)}{24}}$$ Ejemplo: En un grupo de 12 personas se mide el cambio en el ritmo cardíaco (latidos/minuto) después de levantarse. $H_0 : \theta = 15$.
+
+PEGAR TABLA DE DIAPOSITIVA 25
+
+$$\begin{aligned}
+T_{c} & =\sum R_{i}^{+} S\left(y_{i}\right)=14 \\
+E(T) & =\frac{n(n+1)}{4}=39 \\
+V(T) & =\frac{n(n+1)(2 n+1)}{24}=162.5 \\
+Z_{c} & =\frac{T_{c}-E(T)}{\sqrt{V(T)}}=-1.9611
+\end{aligned}$$
+
+Se rechaza $H_{0}$ al 5%, si $Z_{c}>Z_{1-\alpha}=1.645$ Luego, no hay evidencia para rechazar $H_{0}$.
+
+-   Distribución exacta: Se construye generando el conjunto de todos los arreglos posibles (formas como pueden aparecer observaciones positivas y negativas en los en la muestra y obteniendo todos los posibles valores de T.
+
+-   Valores críticos: Ver tablas en (Hollander, M. and Wolfe, D. 1999. Nonparametric Statistical Methods. John Wiley & Sons)
+
+-   Ceros: Si hay ceros en los $Y_i$, se descartan y se toma $n$ como el número de valores distintos de cero.
+
+-   Empates: Si hay $|Y_i|, R_i^+$ empates en los corresponde al promedio de los rangos correspondientes.
+
+Ejemplo cuando hay empates: En un grupo de 12 personas se mide el cambio en el ritmo cardíaco (latidos/minuto) después de levantarse. $H_0 : \theta = 15$.
+
+PEGAR TABLA DE DIAPOSITIVA 29
+
+$$\begin{aligned}
+T_{c} & =\sum R_{i}^{+} S\left(y_{i}\right)=14.5 \\
+E(T) & =\frac{n(n+1)}{4}=39 \\
+V(T) & =\frac{n(n+1)(2 n+1)}{24}=162.375 \\
+Z_{c} & =\frac{T_{c}-E(T)}{\sqrt{V(T)}}=-1.9226
+\end{aligned}$$
+
+Se rechaza $H_0$ al 5% si $Z_{c}>Z_{1-\alpha}=1.645$ Luego, no hay evidencia para rechazar $H_0$
